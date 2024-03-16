@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.heading::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  height: 2px;
+  width: 8%;
+  background-color: black;
+}
+.hover-effect::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(19, 16, 13, 0.199);
+  height: 100%;
+  width: 100%;
+  transition: all 0.7s linear;
+}
+.hover-effect:hover:after {
+  background-color: rgba(0, 0, 0, 0.541);
+}
+.button-hover {
+  /* background-color: red; */
+}
+.btn:hover .dots {
+  transform: translateY(0);
+}
+.btn:hover .text {
+  transform: translateY(-48px);
+}
