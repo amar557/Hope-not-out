@@ -6,6 +6,7 @@ import { CiShoppingCart } from "react-icons/ci";
 import { PiUserThin } from "react-icons/pi";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
+import Menu from "./Menu";
 function Header() {
   const [showsidebar, setShowSidebar] = useState(false);
   function handleSideBar() {

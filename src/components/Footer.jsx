@@ -11,6 +11,7 @@ function Footer() {
     setOpenFooters((prevState) => {
       const newState = [...prevState];
       newState[index] = !newState[index];
+      // console.log(openFooters);
       return newState;
     });
   }

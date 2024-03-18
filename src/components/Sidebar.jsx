@@ -1,64 +1,28 @@
 import { useState } from "react";
-import { navdata } from "../data/navdata";
+import Menu from "./Menu";
 
 function Sidebar({ showsidebar }) {
-  const [openMenu, setMenu] = useState(false);
-
-  function handleMenues(i) {
-    return setMenu((openMenu) => !openMenu);
-    // ref.current.style.rotateX = "180deg";
+  const [menu, setMenu] = useState(true);
+  function handleMenu() {
+    setMenu(true);
+    console.log(menu);
   }
   return (
     <div
       className={`${
         showsidebar ? " top-0 left-0" : "top-0 -left-full"
-      } transition-all bg-white fixed w-2/4 z-20 overflow-scroll h-screen cursor-pointer `}
+      } transition-all bg-white fixed w-1/3 z-20 overflow-scroll flex items-start justify-between h-screen cursor-pointer `}
     >
-      <ul>
-        {navdata.map((data, i) => (
-          <>
-            <li
-              key={i}
-              onClick={handleMenues}
-              className={`${
-                openMenu ? "bg-[#f5f5f5]" : "bg-white"
-              }  flex items-center justify-between hover:bg-[#f5f5f5] transition-all p-3 uppercase border-b`}
-            >
-              <span>{data.nav}</span>
-              {data.isChildren && (
-                <button className="border-s-teal-200 px-4">
-                  {openMenu ? "-" : "+"}
-                </button>
-              )}
-            </li>
-            {data.isChildren &&
-              data.children.map((data, i) => (
-                <Submenu data={data} openMenu={openMenu} key={i} />
-              ))}
-          </>
-        ))}
-      </ul>
-      {navdata.map(
-        (data, i) =>
-          !data.isChildren && (
-            <li className="list-none" key={i}>
-              {data.nav}
-            </li>
-          )
-      )}
-    </div>
-  );
-}
+      <button
+        className="flex items-center justify-center flex-1 text-black uppercase bg-[#f5f5f5]"
+        onClick={handleMenu}
+      >
+        menu
+      </button>
+      {menu && <Menu />}
 
-function Submenu({ data, openMenu }) {
-  return (
-    <>
-      {openMenu && (
-        <li className={`text-black ps-3 list-none py-2 uppercase border-b`}>
-          {data}
-        </li>
-      )}
-    </>
+      <button className="flex-1 uppercase text-black">categories</button>
+    </div>
   );
 }
 
