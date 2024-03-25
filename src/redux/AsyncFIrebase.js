@@ -11,6 +11,6 @@ export const fetchBestSelling = createAsyncThunk("data", async () => {
 export const getDataByID = createAsyncThunk("detals", async (id) => {
   const colRef = doc(firestore, "bestsellingproducts", id);
   const data = await getDoc(colRef);
-  if (data.exists()) return data;
+  if (data.exists()) return data.data();
   else return "no document";
 });

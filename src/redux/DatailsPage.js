@@ -3,7 +3,7 @@ import { getDataByID } from "./AsyncFIrebase";
 let initialState = {
   id: "",
   isLoading: false,
-  details: [],
+  details: {},
   error: "",
 };
 const dataPageSlice = createSlice({
