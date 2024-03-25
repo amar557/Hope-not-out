@@ -13,7 +13,7 @@ function Header() {
     setShowSidebar((bar) => !bar);
   }
   return (
-    <div className="flex px-4 py-2 items-center justify-between relative">
+    <div className="flex px-4 py-2 items-center  justify-between relative">
       <RiMenu2Line
         className="cursor-pointer text-2xl "
         onClick={handleSideBar}
@@ -24,7 +24,8 @@ function Header() {
         <PiUserThin className="cursor-pointer" />
         <CiShoppingCart className="cursor-pointer" />
       </div>
-      <Sidebar showsidebar={showsidebar} />
+      {/* <Sidebar showsidebar={showsidebar} /> */}
+      <Sidebar showsidebar={showsidebar} handleSideBar={handleSideBar} />
     </div>
   );
 }

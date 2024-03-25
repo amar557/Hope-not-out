@@ -8,7 +8,7 @@ export const bestSellingProductsData = [
     discountRate: "2445.00",
   },
   {
-    img1: "https://www.hopenotout.com/cdn/shop/files/7R300456_900x.jpg?v=1702645486",
+    img1: "",
     img2: "https://www.hopenotout.com/cdn/shop/files/7R300454_900x.jpg?v=1702645486",
     text: "Men's Henley Striped Sweatshirt",
     rate: "4290.00",

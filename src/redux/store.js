@@ -1,18 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { fetchBestSelling } from "./AsyncFIrebase";
+let initialState = { value: 0, bestSellingProducts: [], loading: true };
 const slice = createSlice({
   name: "reducer",
-  initialState: {
-    value: 0,
-  },
+
+  initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1;
+    getbestSellingProducts: (state, action) => {
+      state.bestSellingProducts = action.payload;
     },
-    decrement: (state) => {
-      state.value -= 1;
-    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchBestSelling.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchBestSelling.fulfilled, (state, action) => {
+      state.loading = false;
+      state.bestSellingProducts = action.payload;
+    });
+    builder.addCase(fetchBestSelling.rejected, (state, action) => {
+      state.value = action.payload;
+    });
   },
 });
-export const { increment, decrement } = slice.actions;
+export const { getbestSellingProducts } = slice.actions;
 export default slice.reducer;

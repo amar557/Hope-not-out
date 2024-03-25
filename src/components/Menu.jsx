@@ -15,7 +15,7 @@ function Menu({ showsidebar }) {
 
   return (
     <div
-      className={` transition-all bg-white fixed  z-20  h-screen cursor-pointer `}
+      className={` transition-all bg-white absolute  top-12 z-20  h-screen cursor-pointer `}
     >
       <ul>
         {navdata.map((data, i) => (
@@ -43,7 +43,10 @@ function Menu({ showsidebar }) {
       {navdata
         .filter((data) => !data.isChildren)
         .map((data, i) => (
-          <li className="list-none" key={i}>
+          <li
+            className="list-none text-black ps-3 py-2 uppercase hover:cursor-auto"
+            key={i}
+          >
             {data.nav}
           </li>
         ))}

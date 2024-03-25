@@ -1,18 +1,21 @@
 import BestSellingCard from "./BestSellingCard";
-import { bestSellingProductsData } from "../data/bestselling";
-import React from "react";
-// Import Swiper React components
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
+import { Pagination } from "swiper/modules";
+import { Heading } from "./CategoryMenAndWomen";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBestSelling } from "../redux/AsyncFIrebase";
 import "swiper/css";
 import "swiper/css/pagination";
 
-// import required modules
-import { Pagination } from "swiper/modules";
-import { Heading } from "./CategoryMenAndWomen";
-
 function BestSelling() {
+  const dispatch = useDispatch();
+  const select = useSelector((me) => me.anchor.bestSellingProducts);
+  useEffect(() => {
+    dispatch(fetchBestSelling());
+  }, []);
+  // console.log(select);
+  // select.map((data) => console.log(data.id));
   return (
     <div className="flex flex-col gap-6">
       <Heading>best seller</Heading>
@@ -41,20 +44,20 @@ function BestSelling() {
           modules={[Pagination]}
           className="mySwiper"
         >
-          {bestSellingProductsData.map((data, i) => (
+          {select.map((data, i) => (
             <SwiperSlide key={i}>
               <BestSellingCard
-                img1={data.img1}
-                img2={data.img2}
-                rate={data.rate}
-                discountRate={data.discountRate}
-                isDiscount={data.discountRate}
-                text={data.text}
+                img1={data.data().img1}
+                img2={data.data().img2}
+                rate={data.data().rate}
+                discountRate={data.data().discountRate}
+                isDiscount={data.data().discountRate}
+                text={data.data().text}
+                id={data.id}
               />
             </SwiperSlide>
           ))}
         </Swiper>
-        {/* <BestSellingCard /> */}
       </div>
     </div>
   );
