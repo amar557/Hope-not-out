@@ -11,7 +11,7 @@
   width: 8%;
   background-color: black;
 }
-.hover-effect::after {
+/* .hover-effect::after {
   content: "";
   position: absolute;
   top: 0;
@@ -20,10 +20,10 @@
   height: 100%;
   width: 100%;
   transition: all 0.7s linear;
-}
-.hover-effect:hover:after {
+} */
+/* .hover-effect:hover:after {
   background-color: rgba(0, 0, 0, 0.541);
-}
+} */
 .button-hover {
   /* background-color: red; */
 }
@@ -32,4 +32,45 @@
 }
 .btn:hover .text {
   transform: translateY(-48px);
+}
+
+.button-animation {
+  animation: anime 5s 5s infinite linear;
+}
+@keyframes anime {
+  0% {
+    transform: scale(1);
+  }
+  20% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1);
+  }
+
+  60% {
+    transform: scale(1.2);
+  }
+  63% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(1.2);
+  }
+  75% {
+    transform: scale(1);
+  }
+  90% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.ideal .swiper-pagination {
+  display: none;
 }

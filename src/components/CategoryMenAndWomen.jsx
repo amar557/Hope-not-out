@@ -33,7 +33,7 @@ function CategoryMenAndWomen() {
 
 export function Heading({ children }) {
   return (
-    <h1 className="text-center uppercase text-2xl heading font-medium relative">
+    <h1 className="text-center uppercase text-2xl mb-6 heading font-medium relative">
       {children}
     </h1>
   );
