@@ -9,6 +9,9 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       state.cart.push(action.payload);
     },
+    Increment: (state, action) => {
+      state.cart.find((data) => data.id);
+    },
   },
 });
 export default cartSlice.reducer;

@@ -11,8 +11,6 @@ function Home() {
       <CategoryMenAndWomen />
       <CategoriesBoysAndGirls />
       <BestSelling />
-      {/* <SwiperJs /> */}
-      <Footer />
     </div>
   );
 }

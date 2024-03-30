@@ -4,32 +4,55 @@ import Button from "../components/Button";
 import { BaadMainBtn } from "./DetailsPage";
 import { CiTimer } from "react-icons/ci";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import EmptyCart from "../components/EmptyCart";
 const data = ["price", "quantity", "total"];
 
 function Cart() {
+  const select = useSelector((me) => me.cartData.cart);
+
   return (
     <div className="mt-5">
       <h1 className="py-12 text-center w-full uppercase bg-[#757575] text-white text-xl font-semibold ">
         shopping cart
       </h1>
-      <div className="w-10/12 mx-auto mt-16">
-        <div className="flex items-center justify-between border-b pb-3 border-[#00000052]">
-          <span className="text-lg font-semibold uppercase grow-0 shrink-0 basis-4/12">
-            product
-          </span>
-          {data.map((data) => (
-            <span className="text-lg font-semibold uppercase grow-0 shrink-0 basis-1/5 text-center">
-              {data}
-            </span>
-          ))}
-        </div>
-        <div className="border-b pb-10">
-          <CartItem />
-        </div>
-      </div>
-      <CoupenCodes />
-      <EstimateShippingCart />
-      <Footer />
+
+      {select.length > 0 ? (
+        <>
+          <div className="w-10/12 mx-auto mt-16">
+            <div className="flex items-center justify-between border-b pb-3 border-[#00000052]">
+              <span
+                className="text-lg font-semibold uppercase grow-0 shrink-0 basis-4/12"
+                onClick={() => console.log(select)}
+              >
+                product
+              </span>
+              {data.map((data) => (
+                <span className="text-lg font-semibold uppercase grow-0 shrink-0 basis-1/5 text-center">
+                  {data}
+                </span>
+              ))}
+            </div>
+            <div className="border-b pb-10">
+              {select.map((data) => (
+                <CartItem
+                  key={data.id}
+                  pic={data.img}
+                  heading={data.text}
+                  size={data.size}
+                  rate={data.rate}
+                  discountRate={data.discountRate}
+                  isDiscount={data.isDiscount}
+                />
+              ))}
+            </div>
+          </div>
+          <CoupenCodes />
+          <EstimateShippingCart />
+        </>
+      ) : (
+        <EmptyCart />
+      )}
     </div>
   );
 }

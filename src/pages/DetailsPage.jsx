@@ -14,20 +14,25 @@ import "swiper/css/pagination";
 import { Heading } from "../components/CategoryMenAndWomen";
 import Footer from "../components/Footer";
 import ViewCartPopUp from "../components/ViewCartPopUp";
+import { addToCart } from "../redux/CartSlice";
+import BaadMainPop from "../components/BaadMainPop";
 
 function DetailsPage() {
   const [viewCart, setViewCart] = useState(false);
+  const [currentSize, setCurrentSize] = useState("");
   const selected = useSelector((data) => data.detailsPage);
 
   const params = useParams();
   const dispatch = useDispatch();
+  const ref = useRef();
   useEffect(() => {
     dispatch(getDataByID(params.id));
-  }, []);
+  }, [params.id]);
   const data = selected.details;
   function handleCartPopUp() {
     setViewCart((view) => !view);
   }
+
   return (
     <div>
       {selected.isLoading ? (
@@ -36,13 +41,21 @@ function DetailsPage() {
         <>
           <div className=" overflow-hidden flex items-start px-4  justify-start mt-8 flex-col md:flex-row ">
             <div className="flex md:flex-row flex-col-reverse">
-              <div className="shrink-0 grow-1 gap-3 flex md:flex-col  md:me-3">
+              <div
+                className="shrink-0 grow-1 gap-3 flex md:flex-col  md:me-3"
+                ref={ref}
+                onClick={() => console.log(ref.current)}
+              >
                 <img
                   src={data.img2}
-                  alt=""
+                  alt="first"
                   className="h-40 mt-3 md:mt-0 md:mb-3"
                 />
-                <img src={data.img1} alt="" className="h-40 mt-3 md:mt-0" />
+                <img
+                  src={data.img1}
+                  alt="second"
+                  className="h-40 mt-3 md:mt-0"
+                />
               </div>
               <div className="shrink-0 grow-1 basis-9/12">
                 <img src={data.img1} alt="" />
@@ -75,13 +88,21 @@ function DetailsPage() {
                 )}
               </div>
               <InstallementCard data={data} />
-              <SizeContainer />
-              <CartButtons handleCartPopUp={handleCartPopUp} />
+              <SizeContainer
+                currentSize={currentSize}
+                setCurrentSize={setCurrentSize}
+              />
+              <CartButtons
+                handleCartPopUp={handleCartPopUp}
+                data={data}
+                currentSize={currentSize}
+                id={params.id}
+              />
               <PictureDiscription />
             </div>
           </div>
           <RecommendedProducts />
-          <Footer />
+
           {viewCart && <ViewCartPopUp handleCartPopUp={handleCartPopUp} />}
         </>
       )}
@@ -90,10 +111,15 @@ function DetailsPage() {
 }
 
 function InstallementCard({ data }) {
+  const [isOpen, setIsOpen] = useState(false);
+  function handleBadMainPop() {
+    setIsOpen((open) => !open);
+  }
   return (
     <div className="border my-5 rounded-lg ps-2 pe-4 py-2 ">
       <div className="flex  gap-3 items-center">
-        <BaadMainBtn />
+        <BaadMainBtn handleClick={handleBadMainPop} />
+        {isOpen && <BaadMainPop handleClick={handleBadMainPop} />}
         <p className="font-bold text-sm md:text-lg">
           pay in 3 installments of
           <span className="text-[#7826f6] ms-2">
@@ -115,15 +141,17 @@ function InstallementCard({ data }) {
   );
 }
 
-export const BaadMainBtn = function () {
+export const BaadMainBtn = function ({ handleClick }) {
   return (
-    <button className="bg-[#7826f6] py-1 px-1 text-white md:px-2  md:text-xl lowercase rounded-md font-marker w-max">
+    <button
+      className="bg-[#7826f6] py-1 px-1 text-white md:px-2  md:text-xl lowercase rounded-md font-marker w-max"
+      onClick={handleClick}
+    >
       baadmain
     </button>
   );
 };
-function SizeContainer() {
-  const [currentSize, setCurrentSize] = useState("");
+function SizeContainer({ setCurrentSize, currentSize }) {
   const click = useRef();
   useEffect(() => {
     function handleChangeData(i = 0) {
@@ -140,7 +168,7 @@ function SizeContainer() {
       <ul className="flex gap-2 flex-wrap">
         {sizeData.map((data, i) => (
           <li
-            className={`bg-[#f5f5f5] py-3 grid place-content-center px-2 basis-1/5 md:basis-[10.33%] md:py-2 grow-0 text-xs font-semibold ${
+            className={`bg-[#f5f5f5] hover:bg-black hover:text-white hover:cursor-pointer transition-all duration-300 py-3 grid place-content-center px-2 basis-1/5 md:basis-[10.33%] md:py-2 grow-0 text-xs font-semibold ${
               data === currentSize && "bg-black text-white"
             } `}
             onClick={(e) => click.current(i)}
@@ -153,7 +181,9 @@ function SizeContainer() {
   );
 }
 
-function CartButtons({ handleCartPopUp }) {
+function CartButtons({ handleCartPopUp, data, id, currentSize }) {
+  const dispatch = useDispatch();
+
   return (
     <div className="mt-5 flex gap-2 flex-col md:flex-row items-center">
       <div className="flex py-2 px-5 cursor-pointer mb-3 md:mb-0 border rounded-3xl border-black w-max gap-5 font-semibold">
@@ -167,7 +197,20 @@ function CartButtons({ handleCartPopUp }) {
       </div>
       <button
         className="bg-red-500 uppercase py-2 font-semibold button-animation text-white rounded-3xl hover:cursor-pointer grow"
-        onClick={handleCartPopUp}
+        onClick={() => {
+          handleCartPopUp();
+          dispatch(
+            addToCart({
+              img: data.img1,
+              rate: data.rate,
+              text: data.text,
+              isDiscount: data.isDiscount,
+              discountRate: data.discountRate,
+              size: currentSize,
+              id,
+            })
+          );
+        }}
       >
         add to cart
       </button>
