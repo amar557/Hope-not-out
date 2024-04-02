@@ -12,10 +12,10 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Heading } from "../components/CategoryMenAndWomen";
-import Footer from "../components/Footer";
 import ViewCartPopUp from "../components/ViewCartPopUp";
 import { addToCart } from "../redux/CartSlice";
 import BaadMainPop from "../components/BaadMainPop";
+import { Increment } from "../redux/CartSlice";
 
 function DetailsPage() {
   const [viewCart, setViewCart] = useState(false);
@@ -183,15 +183,27 @@ function SizeContainer({ setCurrentSize, currentSize }) {
 
 function CartButtons({ handleCartPopUp, data, id, currentSize }) {
   const dispatch = useDispatch();
-
+  const [quantity, setQuantity] = useState(1);
+  function IncreaseQuantity() {
+    setQuantity((q) => q + 1);
+  }
+  function DecreaseQuantity() {
+    if (quantity < 2) return;
+    setQuantity((quanty) => quanty - 1);
+  }
   return (
     <div className="mt-5 flex gap-2 flex-col md:flex-row items-center">
       <div className="flex py-2 px-5 cursor-pointer mb-3 md:mb-0 border rounded-3xl border-black w-max gap-5 font-semibold">
-        <button className="text-sm">
+        <button
+          className="text-sm"
+          onClick={() => {
+            DecreaseQuantity();
+          }}
+        >
           <FaMinus />
         </button>
-        <span className="">2</span>
-        <button className="text-sm">
+        <span className="">{quantity}</span>
+        <button className="text-sm" onClick={IncreaseQuantity}>
           <FaPlus />
         </button>
       </div>
@@ -208,6 +220,8 @@ function CartButtons({ handleCartPopUp, data, id, currentSize }) {
               discountRate: data.discountRate,
               size: currentSize,
               id,
+              quantity,
+              total: data.isDiscount ? data.discountRate : data.rate,
             })
           );
         }}

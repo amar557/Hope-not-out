@@ -6,12 +6,13 @@ import { CiShoppingCart } from "react-icons/ci";
 import { PiUserThin } from "react-icons/pi";
 import { useState } from "react";
 import Sidebar from "./Sidebar";
-import Menu from "./Menu";
+import { useNavigate } from "react-router";
 function Header() {
   const [showsidebar, setShowSidebar] = useState(false);
   function handleSideBar() {
     setShowSidebar((bar) => !bar);
   }
+  const navigate = useNavigate();
   return (
     <div className="flex px-4 py-2 items-center  justify-between relative">
       <RiMenu2Line
@@ -22,7 +23,10 @@ function Header() {
       <div className=" gap-2 flex text-2xl">
         <CiSearch className="cursor-pointer" />
         <PiUserThin className="cursor-pointer" />
-        <CiShoppingCart className="cursor-pointer" />
+        <CiShoppingCart
+          className="cursor-pointer"
+          onClick={() => navigate("/cart")}
+        />
       </div>
       {/* <Sidebar showsidebar={showsidebar} /> */}
       <Sidebar showsidebar={showsidebar} handleSideBar={handleSideBar} />

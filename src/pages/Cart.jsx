@@ -1,9 +1,8 @@
 import CartItem from "../components/CartItem";
-import Footer from "../components/Footer";
+
 import Button from "../components/Button";
 import { BaadMainBtn } from "./DetailsPage";
 import { CiTimer } from "react-icons/ci";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import EmptyCart from "../components/EmptyCart";
 const data = ["price", "quantity", "total"];
@@ -43,6 +42,9 @@ function Cart() {
                   rate={data.rate}
                   discountRate={data.discountRate}
                   isDiscount={data.isDiscount}
+                  quantity={data.quantity}
+                  id={data.id}
+                  total={data.total}
                 />
               ))}
             </div>

@@ -1,6 +1,8 @@
 import { BsCartX } from "react-icons/bs";
 import Button from "./Button";
+import { useNavigate } from "react-router";
 function EmptyCart() {
+  const navigate = useNavigate();
   return (
     <div className="h-[90vh] flex items-center w-2/4 mx-auto justify-center flex-col">
       <span className="text-[100px] font-semibold mt-10">
@@ -12,7 +14,7 @@ function EmptyCart() {
         Before proceed to checkout you must add some products to your shopping
         cart. You will find a lot of interesting products on our "Shop" page.
       </p>
-      <div className="w-1/4 mt-5 grow">
+      <div className="w-1/4 mt-5 grow" onClick={() => navigate("/")}>
         <Button>return to shop</Button>
       </div>
     </div>

@@ -2,6 +2,8 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { FaMinus } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
+import { useDispatch } from "react-redux";
+import { Decreament, DeleteItem, Increment } from "../redux/CartSlice";
 const items = {
   pic: "https://www.hopenotout.com/cdn/shop/files/51_540x.jpg?v=1711344927",
   heading: "Boy's Morning Face Graphic T-Shirt",
@@ -19,7 +21,10 @@ function CartItem({
   discountRate,
   isDiscount,
   total,
+  quantity,
+  id,
 }) {
+  const dispatch = useDispatch();
   return (
     <>
       <div className="flex items-center justify-between my-5">
@@ -35,24 +40,27 @@ function CartItem({
               <button className="text-lg ">
                 <FiEdit />
               </button>
-              <button className="text-lg ">
+              <button
+                className="text-lg "
+                onClick={() => dispatch(DeleteItem(id))}
+              >
                 <RiDeleteBin6Line />
               </button>
             </div>
           </span>
         </div>
         <div className="space-x-3 text-start basis-1/6">
-          <span className={`${items.isDiscount ? "line-through" : ""}`}>
+          <span className={`${isDiscount ? "line-through" : ""}`}>
             Rs.{rate}
           </span>
           {isDiscount && <span className="text-red-400">Rs{discountRate}</span>}
         </div>
         <div className="border px-3 py-1 flex items-center justify-between gap-3 rounded-3xl border-black basis-[10%]">
-          <button>
+          <button onClick={() => dispatch(Decreament(id))}>
             <FaMinus />
           </button>
-          <span className="font-medium">5</span>
-          <button>
+          <span className="font-medium">{quantity}</span>
+          <button onClick={() => dispatch(Increment(id))}>
             <FaPlus />
           </button>
         </div>
