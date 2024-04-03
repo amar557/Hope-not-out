@@ -5,6 +5,7 @@ import Categories from "./components/Categories";
 import DataForm from "./pages/DataForm";
 import DetailsPage from "./pages/DetailsPage";
 import Cart from "./pages/Cart";
+import CheckOut from "./pages/CheckOut";
 // import Navbar from "./components/Navbar";
 // import Hero from "./components/hero";
 
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       // { path: "home", element: <Navbar /> },
     ],
   },
+  { path: "checkout", element: <CheckOut /> },
 ]);
 
 function App() {

@@ -4,15 +4,7 @@ import { FaMinus } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { Decreament, DeleteItem, Increment } from "../redux/CartSlice";
-const items = {
-  pic: "https://www.hopenotout.com/cdn/shop/files/51_540x.jpg?v=1711344927",
-  heading: "Boy's Morning Face Graphic T-Shirt",
-  size: "02-03Y",
-  rate: 1690.0,
-  discountRate: 1183.0,
-  isDiscount: true,
-  total: 56452,
-};
+
 function CartItem({
   pic,
   heading,

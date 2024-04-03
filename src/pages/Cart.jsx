@@ -5,6 +5,7 @@ import { BaadMainBtn } from "./DetailsPage";
 import { CiTimer } from "react-icons/ci";
 import { useSelector } from "react-redux";
 import EmptyCart from "../components/EmptyCart";
+import { useNavigate } from "react-router";
 const data = ["price", "quantity", "total"];
 
 function Cart() {
@@ -60,6 +61,7 @@ function Cart() {
 }
 
 function CoupenCodes() {
+  const navigate = useNavigate();
   return (
     <div className="flex items-center justify-between w-10/12 mx-auto mt-10 mb-10">
       <div className="flex flex-col basis-2/4">
@@ -86,7 +88,9 @@ function CoupenCodes() {
         <h1 className="mb-3 font-semibold text-lg uppercase space-x-5">
           <span>subtotal:</span> <span>rs.5454587.00</span>
         </h1>
-        <Button>checkout</Button>
+        <button onClick={() => navigate("/checkout")}>
+          <Button>checkout</Button>
+        </button>
         <h1 className="mt-3 font-bold text-base capitalize">
           pay in three easy installment
         </h1>

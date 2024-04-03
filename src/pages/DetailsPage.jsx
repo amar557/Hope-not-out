@@ -15,7 +15,7 @@ import { Heading } from "../components/CategoryMenAndWomen";
 import ViewCartPopUp from "../components/ViewCartPopUp";
 import { addToCart } from "../redux/CartSlice";
 import BaadMainPop from "../components/BaadMainPop";
-import { Increment } from "../redux/CartSlice";
+import Loader from "../components/Loader";
 
 function DetailsPage() {
   const [viewCart, setViewCart] = useState(false);
@@ -24,7 +24,6 @@ function DetailsPage() {
 
   const params = useParams();
   const dispatch = useDispatch();
-  const ref = useRef();
   useEffect(() => {
     dispatch(getDataByID(params.id));
   }, [params.id]);
@@ -35,17 +34,13 @@ function DetailsPage() {
 
   return (
     <div>
-      {selected.isLoading ? (
-        <h1>Loading</h1>
+      {true ? (
+        <Loader />
       ) : (
         <>
           <div className=" overflow-hidden flex items-start px-4  justify-start mt-8 flex-col md:flex-row ">
             <div className="flex md:flex-row flex-col-reverse">
-              <div
-                className="shrink-0 grow-1 gap-3 flex md:flex-col  md:me-3"
-                ref={ref}
-                onClick={() => console.log(ref.current)}
-              >
+              <div className="shrink-0 grow-1 gap-3 flex md:flex-col  md:me-3">
                 <img
                   src={data.img2}
                   alt="first"
@@ -208,7 +203,7 @@ function CartButtons({ handleCartPopUp, data, id, currentSize }) {
         </button>
       </div>
       <button
-        className="bg-red-500 uppercase py-2 font-semibold button-animation text-white rounded-3xl hover:cursor-pointer grow"
+        className="bg-black uppercase py-2 font-semibold button-animation text-white rounded-3xl hover:cursor-pointer grow"
         onClick={() => {
           handleCartPopUp();
           dispatch(
