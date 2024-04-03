@@ -63,8 +63,8 @@ function Cart() {
 function CoupenCodes() {
   const navigate = useNavigate();
   return (
-    <div className="flex items-center justify-between w-10/12 mx-auto mt-10 mb-10">
-      <div className="flex flex-col basis-2/4">
+    <div className="flex flex-col md:flex-row items-center justify-between w-10/12 gap-10 mx-auto mt-10 mb-10">
+      <div className="flex flex-col w-full text-center md:text-start md:w-2/4  ">
         <label htmlFor="" className="block capitalize mb-3 ">
           add order note
         </label>
@@ -81,14 +81,17 @@ function CoupenCodes() {
         <input
           type="text"
           placeholder="Coupen code"
-          className="border grow-0 px-2 py-2 w-max outline-none "
+          className="border grow-0 mx-auto md:mx-0 px-2 py-2 w-max outline-none "
         />
       </div>
-      <div className="flex flex-col basis-1/4 text-end items-end">
+      <div className="flex flex-col w-full  md:w-2/4 text-end items-center md:items-end">
         <h1 className="mb-3 font-semibold text-lg uppercase space-x-5">
           <span>subtotal:</span> <span>rs.5454587.00</span>
         </h1>
-        <button onClick={() => navigate("/checkout")}>
+        <button
+          className="w-2/4 md:w-full lg:w-2/4"
+          onClick={() => navigate("/checkout")}
+        >
           <Button>checkout</Button>
         </button>
         <h1 className="mt-3 font-bold text-base capitalize">
@@ -120,12 +123,12 @@ function EstimateShippingCart() {
   countryData();
 
   return (
-    <div className="mx-auto border text-center relative w-10/12 px-12 py-8 mb-10">
-      <h1 className="absolute px-3 -top-2 left-2/4 -translate-x-2/4 bg-white capitalize text-3xl font-semibold -translate-y-2/4">
+    <div className="mx-auto border text-center relative w-10/12 md:px-12 px-4 py-4 md:py-8 mb-10">
+      <h1 className="absolute md:px-3 px-1 -top-1 md:-top-2 left-2/4 -translate-x-2/4 bg-white capitalize text-lg  md:text-3xl font-semibold -translate-y-2/4">
         estimate shipping
       </h1>
-      <div className="flex items-end justify-center gap-10 ">
-        <span className=" shrink basis-3/12 text-start">
+      <div className="flex items-end justify-center gap-10 md:flex-row flex-col ">
+        <span className=" shrink w-full md:basis-3/12  text-start">
           <label htmlFor="" className="block">
             country
           </label>
@@ -140,7 +143,7 @@ function EstimateShippingCart() {
             <option value="45">adsjfklj</option>
           </select>
         </span>
-        <span className=" basis-3/12 text-start">
+        <span className=" md:basis-3/12 w-full text-start">
           <label htmlFor="" className="block">
             postal/zipcode
           </label>
@@ -149,7 +152,7 @@ function EstimateShippingCart() {
             className="border rounded-3xl w-full px-3 outline-none py-1"
           />
         </span>
-        <div className="grow-0 basis-3/12">
+        <div className="grow-0 md:basis-3/12 w-full">
           <Button>calculate shipping</Button>
         </div>
       </div>

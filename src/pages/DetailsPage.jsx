@@ -24,6 +24,7 @@ function DetailsPage() {
 
   const params = useParams();
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getDataByID(params.id));
   }, [params.id]);
@@ -34,7 +35,7 @@ function DetailsPage() {
 
   return (
     <div>
-      {true ? (
+      {selected.isLoading ? (
         <Loader />
       ) : (
         <>
@@ -203,7 +204,7 @@ function CartButtons({ handleCartPopUp, data, id, currentSize }) {
         </button>
       </div>
       <button
-        className="bg-black uppercase py-2 font-semibold button-animation text-white rounded-3xl hover:cursor-pointer grow"
+        className="bg-black uppercase w-full py-2 font-semibold button-animation text-white rounded-3xl hover:cursor-pointer grow"
         onClick={() => {
           handleCartPopUp();
           dispatch(

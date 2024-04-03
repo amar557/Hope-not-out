@@ -19,7 +19,7 @@ function Sidebar({ showsidebar, handleSideBar }) {
     <div
       className={`${
         showsidebar ? " top-0 left-0" : "top-0 -left-full"
-      } transition-all bg-white fixed w-1/3 z-20 duration-300 overflow-scroll flex items-start justify-between h-screen cursor-pointer `}
+      } transition-all bg-white fixed w-5/6 md:w-1/3 z-20 duration-300 overflow-scroll flex items-start justify-between h-screen cursor-pointer `}
     >
       <button
         className={`flex items-center justify-center flex-1 text-black uppercase py-2 px-3  ${

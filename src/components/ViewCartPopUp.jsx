@@ -1,7 +1,6 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function ViewCartPopUp({ handleCartPopUp }) {
-  const navigate = useNavigate();
   return (
     // <></>
     <div className="h-[100vh] w-full fixed top-0 left-0 overflow-y-hidden z-50">
@@ -15,13 +14,13 @@ function ViewCartPopUp({ handleCartPopUp }) {
         className="bg-[#000000a6]  top-0 h-full overflow-hidden left-0  w-full "
         onClick={handleCartPopUp}
       ></div>
-      <div className="top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 pt-5 px-10 bg-white absolute max-w-[450px] text-center">
-        <p className="mb-5 text-2xl font-semibold">
-          when pop up open the background should be fixed
+      <div className="top-2/4 left-2/4 -translate-x-2/4 w-[90%] -translate-y-2/4 pt-5 px-10 bg-white absolute max-w-[450px] text-center">
+        <p className="mb-5 text-lg  sm:text-xl uppercase font-semibold">
+          Product was successfully added to your cart.
         </p>
-        <div className="mb-5 space-x-7 ">
+        <div className="mb-5  flex flex-col md:flex-row gap-5 items-center ">
           <button
-            className="border-b border-gray-300 hover:border-b-2 transition-all  hover:border-gray-500"
+            className="border-b w-max border-gray-300 hover:border-b-2 transition-all  hover:border-gray-500"
             onClick={handleCartPopUp}
           >
             continue shopping

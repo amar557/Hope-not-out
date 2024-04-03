@@ -6,9 +6,9 @@ function HoveredCard({ img, title, styling = "flex-grow" }) {
       <img
         src={img}
         alt=""
-        className=" transition-all duration-1000 h-[50vw] md:h-[30vw] w-full group-hover:scale-125"
+        className=" transition-all duration-1000 h-[66vw] md:h-[30vw] w-full group-hover:scale-125"
       />
-      <p className=" absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 z-20 text-white uppercase text-center font-semibold text-2xl">
+      <p className=" absolute top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 z-20 text-white uppercase text-center font-semibold text-lg md:text-2xl">
         {title}
       </p>
     </div>
