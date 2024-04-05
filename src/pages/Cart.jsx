@@ -34,9 +34,9 @@ function Cart() {
               ))}
             </div>
             <div className="border-b pb-10">
-              {select.map((data) => (
+              {select.map((data, i) => (
                 <CartItem
-                  key={data.id}
+                  key={i}
                   pic={data.img}
                   heading={data.text}
                   size={data.size}

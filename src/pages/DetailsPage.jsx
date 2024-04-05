@@ -1,21 +1,21 @@
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBestSelling, getDataByID } from "../redux/AsyncFIrebase";
-import { useEffect, useRef, useState } from "react";
+import { SwiperSlide, Swiper } from "swiper/react";
 import { CiTimer } from "react-icons/ci";
 import { sizeData } from "../data/Size";
 import { FaMinus } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
-import { SwiperSlide, Swiper } from "swiper/react";
 import BestSellingCard from "../components/BestSellingCard";
 import { Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
 import { Heading } from "../components/CategoryMenAndWomen";
 import ViewCartPopUp from "../components/ViewCartPopUp";
 import { addToCart } from "../redux/CartSlice";
 import BaadMainPop from "../components/BaadMainPop";
 import Loader from "../components/Loader";
+import "swiper/css";
+import "swiper/css/pagination";
 
 function DetailsPage() {
   const [viewCart, setViewCart] = useState(false);

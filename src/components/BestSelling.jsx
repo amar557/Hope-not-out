@@ -31,14 +31,17 @@ function BestSelling() {
             640: {
               slidesPerView: 2,
               spaceBetween: 20,
+              slidesPerGroup: 2,
             },
             768: {
               slidesPerView: 4,
+              slidesPerGroup: 4,
               spaceBetween: 40,
             },
             1024: {
               slidesPerView: 4,
               spaceBetween: 50,
+              slidesPerGroup: 4,
             },
           }}
           modules={[Pagination]}
