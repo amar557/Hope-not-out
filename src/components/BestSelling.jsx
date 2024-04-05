@@ -14,8 +14,7 @@ function BestSelling() {
   useEffect(() => {
     dispatch(fetchBestSelling());
   }, []);
-  // console.log(select);
-  // select.map((data) => console.log(data.id));
+
   return (
     <div className="flex flex-col gap-6">
       <Heading>best seller</Heading>

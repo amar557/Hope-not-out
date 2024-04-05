@@ -4,7 +4,7 @@ import { GoPlus } from "react-icons/go";
 
 function Footer() {
   const [openFooters, setOpenFooters] = useState(
-    Array(footerData.length).fill(true)
+    Array(footerData.length).fill(false)
   );
 
   function handleFooter(index) {
