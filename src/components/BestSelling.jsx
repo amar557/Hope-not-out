@@ -21,7 +21,7 @@ function BestSelling() {
       <Heading>best seller</Heading>
       <div className="flex overflow-hidden lg:mx-auto justify-center h-[99vw]  sm:h-[83vw] md:h-[55vw] lg:h-[40vw] px-3 w-full lg:w-11/12 xl:w-4/5 2xl:w-4/5 ">
         <Swiper
-          slidesPerGroup={4}
+          slidesPerGroup={2}
           slidesPerView={2}
           spaceBetween={30}
           pagination={{

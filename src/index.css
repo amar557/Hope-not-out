@@ -11,7 +11,7 @@
   width: 8%;
   background-color: black;
 }
-/* .hover-effect::after {
+.hover-effect::after {
   content: "";
   position: absolute;
   top: 0;
@@ -20,12 +20,12 @@
   height: 100%;
   width: 100%;
   transition: all 0.7s linear;
-} */
-/* .hover-effect:hover:after {
+}
+.hover-effect:hover:after {
   background-color: rgba(0, 0, 0, 0.541);
-} */
+}
 .button-hover {
-  /* background-color: red; */
+  background-color: red;
 }
 .btn:hover .dots {
   transform: translateY(0);
