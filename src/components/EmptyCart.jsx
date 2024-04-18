@@ -12,7 +12,7 @@ function EmptyCart() {
       <h1 className="my-10 text-3xl md:text-4xl text-center  font-bold uppercase">
         your cart is empty
       </h1>
-      <p className="text-center">
+      <p className="text-center ">
         Before proceed to checkout you must add some products to your shopping
         cart. You will find a lot of interesting products on our "Shop" page.
       </p>

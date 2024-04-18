@@ -1,19 +1,24 @@
 import CartItem from "../components/CartItem";
-
 import Button from "../components/Button";
 import { BaadMainBtn } from "./DetailsPage";
 import { CiTimer } from "react-icons/ci";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import EmptyCart from "../components/EmptyCart";
 import { useNavigate } from "react-router";
+import { SubTotal } from "../redux/CartSlice";
 const data = ["price", "quantity", "total"];
 
 function Cart() {
   const select = useSelector((me) => me.cartData.cart);
+  let subTotalRef = useSelector((d) => d.cartData.subtotal);
+  const dispatch = useDispatch();
 
   return (
     <div className="mt-5">
-      <h1 className="py-12 text-center w-full uppercase bg-[#757575] text-white text-xl font-semibold ">
+      <h1
+        className="py-12 text-center w-full uppercase bg-[#757575] text-white text-xl font-semibold "
+        onClick={() => dispatch(SubTotal())}
+      >
         shopping cart
       </h1>
 
@@ -21,10 +26,7 @@ function Cart() {
         <>
           <div className="w-10/12 mx-auto mt-16">
             <div className="flex items-center justify-between border-b pb-3 border-[#00000052]">
-              <span
-                className="text-lg font-semibold uppercase grow-0 shrink-0 basis-4/12"
-                onClick={() => console.log(select)}
-              >
+              <span className="text-lg font-semibold uppercase grow-0 shrink-0 basis-4/12">
                 product
               </span>
               {data.map((data) => (
@@ -50,7 +52,7 @@ function Cart() {
               ))}
             </div>
           </div>
-          <CoupenCodes />
+          <CoupenCodes subTotal={subTotalRef} />
           <EstimateShippingCart />
         </>
       ) : (
@@ -60,7 +62,7 @@ function Cart() {
   );
 }
 
-function CoupenCodes() {
+function CoupenCodes({ subTotal }) {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col md:flex-row items-center justify-between w-10/12 gap-10 mx-auto mt-10 mb-10">
@@ -86,7 +88,7 @@ function CoupenCodes() {
       </div>
       <div className="flex flex-col w-full  md:w-2/4 text-end items-center md:items-end">
         <h1 className="mb-3 font-semibold text-lg uppercase space-x-5">
-          <span>subtotal:</span> <span>rs.5454587.00</span>
+          <span>subtotal:</span> <span>rs {subTotal}</span>
         </h1>
         <button
           className="w-2/4 md:w-full lg:w-2/4"
@@ -115,13 +117,6 @@ function CoupenCodes() {
 }
 
 function EstimateShippingCart() {
-  async function countryData() {
-    const req = await fetch("https://gist.github.com/keeguon/2310008");
-    const toJson = await req.json();
-    console.log(toJson);
-  }
-  countryData();
-
   return (
     <div className="mx-auto border text-center relative w-10/12 md:px-12 px-4 py-4 md:py-8 mb-10">
       <h1 className="absolute md:px-3 px-1 -top-1 md:-top-2 left-2/4 -translate-x-2/4 bg-white capitalize text-lg  md:text-3xl font-semibold -translate-y-2/4">

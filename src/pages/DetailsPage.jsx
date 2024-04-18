@@ -11,7 +11,7 @@ import BestSellingCard from "../components/BestSellingCard";
 import { Pagination } from "swiper/modules";
 import { Heading } from "../components/CategoryMenAndWomen";
 import ViewCartPopUp from "../components/ViewCartPopUp";
-import { addToCart } from "../redux/CartSlice";
+import { addToCart, SubTotal } from "../redux/CartSlice";
 import BaadMainPop from "../components/BaadMainPop";
 import Loader from "../components/Loader";
 import "swiper/css";
@@ -78,7 +78,10 @@ function DetailsPage() {
                   </p>
                 )}
                 {data.isDiscount && (
-                  <p className="bg-red-600 p-1 text-white rounded-md text-xs">
+                  <p
+                    className="bg-red-600 p-1 text-white rounded-md text-xs"
+                    onClick={() => dispatch(SubTotal())}
+                  >
                     SAVE Rs {data.rate - data.discountRate}
                   </p>
                 )}
@@ -164,7 +167,7 @@ function SizeContainer({ setCurrentSize, currentSize }) {
       <ul className="flex gap-2 flex-wrap">
         {sizeData.map((data, i) => (
           <li
-            className={`bg-[#f5f5f5] hover:bg-black hover:text-white hover:cursor-pointer transition-all duration-300 py-3 grid place-content-center px-2 basis-1/5 md:basis-[10.33%] md:py-2 grow-0 text-xs font-semibold ${
+            className={`bg-[#f5f5f5] hover:bg-black hover:text-white hover:cursor-pointer transition-all duration-300 py-3 grid place-content-center px-2 basis-1/5  md:basis-[10.33%] md:py-2 grow-0 text-xs font-semibold ${
               data === currentSize && "bg-black text-white"
             } `}
             onClick={(e) => click.current(i)}

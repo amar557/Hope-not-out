@@ -25,7 +25,7 @@ function BestSellingCard({
           alt=""
           className=" group-hover:scale-110 transition-all duration-1000  absolute top-0 right-0 opacity-0 group-hover:opacity-100"
         />
-        <button className="bg-white text-black absolute bottom-2 right-2 p-2 rounded-full text-xl lg:hidden block ">
+        <button className="bg-white text-black absolute bottom-6 right-2 p-1 rounded-full text-lg lg:hidden block ">
           <BsThreeDots />
         </button>
         <div
@@ -44,7 +44,7 @@ function BestSellingCard({
       </div>
       <p className="font-medium mt-3">{text}</p>
       <div className="space-x-2">
-        <span>Rs {rate}</span>
+        <span className={`${isDiscount ? "line-through" : ""}`}>Rs {rate}</span>
         {isDiscount && (
           <span className="text-red-500 font-medium">{discountRate}</span>
         )}

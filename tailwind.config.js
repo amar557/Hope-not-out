@@ -4,6 +4,9 @@ export default {
   theme: {
     extend: {
       fontFamily: { poppins: "poppins", marker: "Permanent Marker" },
+      screens: {
+        xlg: "1305px",
+      },
     },
   },
   plugins: [],
