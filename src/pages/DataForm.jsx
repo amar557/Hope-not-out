@@ -8,27 +8,46 @@ function DataForm() {
   const [rate, setrate] = useState(0);
   const [isDiscount, setIsdiscount] = useState(true);
   const [discountRate, setDiscountRate] = useState(0);
-
+  const [category, setcategory] = useState("men");
   async function handleDataSubmit(e) {
     e.preventDefault();
-    await addDoc(collection(firestore, "bestsellingproducts"), {
-      img1,
-      img2,
-      text,
-      rate,
-      isDiscount,
-      discountRate,
-    });
-    setimg1("");
-    setimg2("");
-    setDiscountRate("");
-    setIsdiscount("");
-    setrate("");
-    settext("");
+    if (!img1 || !img2 || !text || !rate || !category) {
+    } else {
+      await addDoc(collection(firestore, category), {
+        img1,
+        img2,
+        text,
+        rate,
+        isDiscount,
+        discountRate,
+      });
+      setimg1("");
+      setimg2("");
+      setDiscountRate("");
+      setIsdiscount(false);
+      setrate("");
+      settext("");
+    }
   }
   return (
     <form onSubmit={handleDataSubmit}>
       <div>
+        <div className="block ">
+          <label htmlFor="">select the category</label>
+          <select
+            name=""
+            id=""
+            onChange={(e) => setcategory(e.target.value)}
+            className="border w-1/2 ms-5 p-2 rounded outline-none"
+          >
+            <option value="men">men</option>
+            <option value="women">women</option>
+            <option value="kids">kids</option>
+            <option value="minikids">minikids</option>
+            <option value="bestsellingproducts">bestsellingproducts</option>
+          </select>
+        </div>
+
         <label htmlFor="">image1</label>
         <input
           type="text"
@@ -61,22 +80,18 @@ function DataForm() {
           type="text"
           className="border w-full"
           onChange={(e) => setrate(Number(e.target.value))}
-          // value={rate}
+          value={rate}
         />
       </div>
       <div>
-        <label htmlFor="">isDiscount</label>
+        <label htmlFor=""> check it if the product have Discount</label>
+
         <input
-          type="text"
-          className="border w-full"
-          onChange={(e) => {
-            if (e.target.value == "1") {
-              setIsdiscount(true);
-            } else {
-              setIsdiscount(false);
-            }
-          }}
-          // value={isDiscount}
+          type="checkbox"
+          name=""
+          id=""
+          checked={isDiscount}
+          onChange={(e) => setIsdiscount(e.target.checked)}
         />
       </div>
       <div>
@@ -85,7 +100,7 @@ function DataForm() {
           type="text"
           className="border w-full"
           onChange={(e) => setDiscountRate(Number(e.target.value))}
-          // value={discountRate}
+          value={discountRate}
         />
       </div>
       <button onClick={handleDataSubmit} className="border p-2 bg-blue-600">

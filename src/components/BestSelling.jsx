@@ -23,6 +23,7 @@ function BestSelling() {
           slidesPerGroup={2}
           slidesPerView={2}
           spaceBetween={30}
+          loop={true}
           pagination={{
             clickable: true,
           }}

@@ -158,7 +158,7 @@ function CheckOut() {
           </p>
         </div>
         <div
-          className={`h-[130vh] ${
+          className={`h-[130vh]  ${
             fixed ? "fixed top-0 w-1/2 left-[54.2%]" : "sticky top-[12%] w-2/4"
           }   left-2/4  bg-[#fafafa] overflow-y-auto p-14`}
         >
