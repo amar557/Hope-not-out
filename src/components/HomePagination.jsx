@@ -1,15 +1,8 @@
 import React from "react";
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
-// import "./styles.css";
-
-// import required modules
 import { Autoplay, Pagination } from "swiper/modules";
 
 const imagesData = [
@@ -58,7 +51,6 @@ function HomePagination() {
         pagination={{
           clickable: true,
         }}
-        // navigation={true}
         modules={[Autoplay, Pagination]}
         className="mySwiper"
       >
@@ -83,7 +75,6 @@ function HomePagination() {
             </picture>
           </SwiperSlide>
         ))}
-        {/* <SwiperSlide>Slide 1</SwiperSlide> */}
       </Swiper>
     </div>
   );

@@ -62,8 +62,5 @@ export const navdata = [
     nav: "login | register",
     isChildren: false,
   },
-  {
-    nav: ["need help", "info@hopenotout.com", " +92-325-5222455"],
-    isChildren: false,
-  },
 ];
+export const info = ["need help?", "info@hopenotout.com", " +92-325-5222455"];
