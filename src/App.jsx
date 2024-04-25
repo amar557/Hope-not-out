@@ -9,6 +9,7 @@ import CheckOut from "./pages/CheckOut";
 import Collection from "./pages/Collection";
 // import Navbar from "./components/Navbar";
 // import Hero from "./components/hero";
+import NewFort from "./pages/NewFort";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "form", element: <DataForm /> },
       { path: "detailspage/:id", element: <DetailsPage /> },
       { path: "cart", element: <Cart /> },
+      { path: "new", element: <NewFort /> },
       { path: "collection/:collectionname", element: <Collection /> },
     ],
   },

@@ -7,6 +7,11 @@ export const fetchBestSelling = createAsyncThunk("data", async () => {
 
   return query.docs;
 });
+export const minKids = createAsyncThunk("data2", async () => {
+  const query = await getDocs(collection(firestore, "minikids"));
+
+  return query.docs;
+});
 
 export const getDataByID = createAsyncThunk("detals", async (id) => {
   const colRef = doc(firestore, "bestsellingproducts", id);

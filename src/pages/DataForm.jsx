@@ -1,9 +1,11 @@
 import { collection, addDoc } from "firebase/firestore";
-import { firestore } from "../FireBase/firebase";
+import { firestore, storage } from "../FireBase/firebase";
 import { useState } from "react";
+import { ref, uploadBytes } from "firebase/storage";
+
 function DataForm() {
-  const [img1, setimg1] = useState("");
-  const [img2, setimg2] = useState("");
+  const [imges, setimg4] = useState("");
+
   const [text, settext] = useState("");
   const [rate, setrate] = useState(0);
   const [isDiscount, setIsdiscount] = useState(true);
@@ -11,22 +13,29 @@ function DataForm() {
   const [category, setcategory] = useState("men");
   async function handleDataSubmit(e) {
     e.preventDefault();
-    if (!img1 || !img2 || !text || !rate || !category) {
+    let urls = [];
+    for (let i = 0; i < imges.length; i++) {
+      const refer = ref(storage, `new/file/${imges[i].name + Date.now()}`);
+      let imgURl = await uploadBytes(refer, imges[i]);
+      urls.push(imgURl.ref.fullPath);
+    }
+    console.log(urls);
+    if (!text || !rate || !category || !imges) {
+      console.log("no data");
     } else {
       await addDoc(collection(firestore, category), {
-        img1,
-        img2,
         text,
         rate,
         isDiscount,
         discountRate,
+        urls,
       });
-      setimg1("");
-      setimg2("");
+      setimg4("");
       setDiscountRate("");
       setIsdiscount(false);
       setrate("");
       settext("");
+      urls = [];
     }
   }
   return (
@@ -47,24 +56,9 @@ function DataForm() {
             <option value="bestsellingproducts">bestsellingproducts</option>
           </select>
         </div>
+      </div>
 
-        <label htmlFor="">image1</label>
-        <input
-          type="text"
-          className="border w-full"
-          onChange={(e) => setimg1(e.target.value)}
-          value={img1}
-        />
-      </div>
-      <div>
-        <label htmlFor="">image2</label>
-        <input
-          type="text"
-          className="border w-full"
-          onChange={(e) => setimg2(e.target.value)}
-          value={img2}
-        />
-      </div>
+      <input type="file" multiple onChange={(e) => setimg4(e.target.files)} />
       <div>
         <label htmlFor="">label</label>
         <input

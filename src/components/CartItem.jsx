@@ -20,9 +20,9 @@ function CartItem({
   return (
     <>
       <div className="flex  items-center justify-between my-5">
-        {/* <div className="basis-5/12 flex items-center gap-5"> */}
-        <img src={pic} alt="" className="w-32" />
-        <div>
+        <div className="basis-5/12 flex items-center gap-5">
+          <img src={pic} alt="" className="w-32" />
+
           <span>
             <p className="font-bold  text-sm">{heading}</p>
             <p className="space-x-2 text-sm font-bold text-[#0f172a6b] my-1">
@@ -41,26 +41,23 @@ function CartItem({
               </button>
             </div>
           </span>
-          {/* </div> */}
-          <div className="space-x-3 text-start basis-1/6">
-            <span className={`${isDiscount ? "line-through" : ""}`}>
-              Rs.{rate}
-            </span>
-            {isDiscount && (
-              <span className="text-red-400">Rs{discountRate}</span>
-            )}
-          </div>
-          <div className="border px-3 py-1 flex items-center justify-between gap-3 rounded-3xl border-black basis-[10%]">
-            <button onClick={() => dispatch(Decreament(id))}>
-              <FaMinus />
-            </button>
-            <span className="font-medium">{quantity}</span>
-            <button onClick={() => dispatch(Increment(id))}>
-              <FaPlus />
-            </button>
-          </div>
-          <div className="basis-1/6 text-center">Rs.{total}</div>
         </div>
+        <div className="space-x-3 text-start basis-1/6">
+          <span className={`${isDiscount ? "line-through" : ""}`}>
+            Rs.{rate}
+          </span>
+          {isDiscount && <span className="text-red-400">Rs{discountRate}</span>}
+        </div>
+        <div className="border px-3 py-1 flex items-center justify-between gap-3 rounded-3xl border-black basis-[10%]">
+          <button onClick={() => dispatch(Decreament(id))}>
+            <FaMinus />
+          </button>
+          <span className="font-medium">{quantity}</span>
+          <button onClick={() => dispatch(Increment(id))}>
+            <FaPlus />
+          </button>
+        </div>
+        <div className="basis-1/6 text-center">Rs.{total}</div>
       </div>
     </>
   );

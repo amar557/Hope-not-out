@@ -7,7 +7,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     getbestSellingProducts: (state, action) => {
-      state.bestSellingProducts = action.payload;
+      // state.bestSellingProducts = action.payload;
     },
   },
   extraReducers: (builder) => {
