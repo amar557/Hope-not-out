@@ -1,7 +1,11 @@
-function HoveredCard({ img, title, styling = "flex-grow" }) {
+import { useNavigate } from "react-router";
+
+function HoveredCard({ img, title, styling = "flex-grow", to }) {
+  const navigate = useNavigate();
   return (
     <div
       className={`${styling} group flex-shrink   md:basis-[23%] lg:basis-[19%] basis-[48%]  group relative overflow-hidden  hover:cursor-pointer hover-effect`}
+      onClick={() => navigate(`/collection/${to}`)}
     >
       <img
         src={img}

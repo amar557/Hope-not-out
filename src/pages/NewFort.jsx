@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { minKids } from "../redux/AsyncFIrebase";
 import BestSellingCard from "../components/BestSellingCard";
 import { getDownloadURL, getStorage, ref } from "firebase/storage";
+
 function NewFort() {
   const dispatch = useDispatch();
 
@@ -19,10 +20,19 @@ function NewFort() {
   useEffect(() => {
     dispatch(minKids());
   }, [dispatch]);
-  console.log(all.length);
+
   return (
     <div>
-      <BestSellingCard />
+      {select.map((d) => (
+        <BestSellingCard
+          data={d.data().urls}
+          isDiscount={d.data().isDiscount}
+          text={d.data().text}
+          rate={d.data().rate}
+          discountRate={d.data().discountRate}
+          id={d.id}
+        />
+      ))}
     </div>
   );
 }

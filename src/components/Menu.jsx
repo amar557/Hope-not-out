@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 function Menu() {
   const [openMenu, setOpenMenu] = useState(Array(navdata.length).fill(false));
 
-  console.log(navdata.filter((data) => !data.isChildren));
   function handleMenues(i) {
     setOpenMenu((prevOpenMenu) => {
       const updatedOpenMenu = [...prevOpenMenu];

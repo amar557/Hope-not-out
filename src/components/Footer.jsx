@@ -20,7 +20,6 @@ function Footer() {
       }
     });
   }, []);
-  console.log(openFooters);
 
   function handleFooter(index) {
     setOpenFooters((prevState) => {

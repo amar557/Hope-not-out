@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { CoupenCode } from "../redux/CartSlice";
+
 function CheckOut() {
-  const [fixed, setFixed] = useState(0);
+  const [fixed, setFixed] = useState(false);
   const [coupen, setCoupen] = useState("");
   const dispatch = useDispatch();
   const selectedItems = useSelector((e) => e.cartData);
   const subtotal = selectedItems.subtotal;
   const cartData = selectedItems.cart;
+
   function handleCoupenCode() {
     if (coupen === 1161) {
       dispatch(CoupenCode());
@@ -18,15 +20,14 @@ function CheckOut() {
       setCoupen("");
     }
   }
-  useEffect(() => {
-    document.addEventListener("scroll", function () {
-      if (window.scrollY < 98) {
-        setFixed(false);
-      } else {
-        setFixed(true);
-      }
-    });
-  }, []);
+
+  document.addEventListener("scroll", function () {
+    if (window.scrollY < 98) {
+      setFixed(false);
+    } else {
+      setFixed(true);
+    }
+  });
 
   return (
     <>

@@ -4,14 +4,17 @@ const categoriesData = [
   {
     img: "https://www.hopenotout.com/cdn/shop/files/7R300418_e61c0b15-e157-4d9f-89f0-ca8be94d9130_360x.jpg?v=1710157970",
     title: "men",
+    to: "men",
   },
   {
     img: "https://www.hopenotout.com/cdn/shop/files/Untitled-1_360x.jpg?v=1702905465",
     title: "men eastern",
+    to: "men-eastern",
   },
   {
     img: "https://www.hopenotout.com/cdn/shop/files/Fusion_d37303b9-d74e-4daf-9fac-5d96f1e215f9_360x.jpg?v=1708808539",
     title: "women fusion",
+    to: "women",
   },
   {
     img: "https://www.hopenotout.com/cdn/shop/files/Women-Tiles_b8871734-c8c4-4362-9cc1-33f3a727fd05_360x.jpg?v=1708808572",
@@ -24,7 +27,7 @@ function CategoryMenAndWomen() {
       <Heading> categories mens & womens</Heading>
       <div className="flex md:gap-3 gap-2 mt-12 flex-wrap">
         {categoriesData.map((data, i) => (
-          <HoveredCard img={data.img} title={data.title} />
+          <HoveredCard img={data.img} title={data.title} to={data.to} />
         ))}
       </div>
     </div>

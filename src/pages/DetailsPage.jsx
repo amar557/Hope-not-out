@@ -16,19 +16,42 @@ import BaadMainPop from "../components/BaadMainPop";
 import Loader from "../components/Loader";
 import "swiper/css";
 import "swiper/css/pagination";
+import { getDownloadURL, getStorage, ref } from "firebase/storage";
 
 function DetailsPage() {
   const [viewCart, setViewCart] = useState(false);
   const [currentSize, setCurrentSize] = useState("");
+  const [images, setImages] = useState([]);
   const selected = useSelector((data) => data.detailsPage);
 
   const params = useParams();
   const dispatch = useDispatch();
-
+  console.log(params);
   useEffect(() => {
-    dispatch(getDataByID(params.id));
-  }, [params.id]);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    dispatch(getDataByID(params));
+  }, [params.page, params.id]);
+  // console.log(selected);
   const data = selected.details;
+  const storage = getStorage();
+  useEffect(() => {
+    async function fetchData() {
+      const urls = [];
+      for (const d of data.urls) {
+        try {
+          const url = await getDownloadURL(ref(storage, d));
+          urls.push(url);
+        } catch (error) {
+          console.error("Error getting download URL:", error);
+        }
+      }
+
+      setImages(urls);
+    }
+
+    fetchData();
+  }, [storage, data]);
+
   function handleCartPopUp() {
     setViewCart((view) => !view);
   }
@@ -42,19 +65,16 @@ function DetailsPage() {
           <div className=" overflow-hidden flex items-start px-4  justify-start mt-8 flex-col md:flex-row ">
             <div className="flex md:flex-row flex-col-reverse">
               <div className="shrink-0 grow-1 gap-3 flex md:flex-col  md:me-3">
-                <img
-                  src={data.img2}
-                  alt="first"
-                  className="h-40 mt-3 md:mt-0 md:mb-3"
-                />
-                <img
-                  src={data.img1}
-                  alt="second"
-                  className="h-40 mt-3 md:mt-0"
-                />
+                {images.map((img) => (
+                  <img
+                    src={img}
+                    alt="first"
+                    className="h-40 mt-3 md:mt-0 md:mb-3"
+                  />
+                ))}
               </div>
               <div className="shrink-0 grow-1 basis-9/12">
-                <img src={data.img1} alt="" />
+                <img src={images[0]} alt="" />
               </div>
             </div>
             <div className="shrink-0 grow  basis-5/12  ">
@@ -96,6 +116,7 @@ function DetailsPage() {
                 data={data}
                 currentSize={currentSize}
                 id={params.id}
+                image={images[0]}
               />
               <PictureDiscription />
             </div>
@@ -180,7 +201,7 @@ function SizeContainer({ setCurrentSize, currentSize }) {
   );
 }
 
-function CartButtons({ handleCartPopUp, data, id, currentSize }) {
+function CartButtons({ handleCartPopUp, data, id, currentSize, image }) {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
   function IncreaseQuantity() {
@@ -212,7 +233,7 @@ function CartButtons({ handleCartPopUp, data, id, currentSize }) {
           handleCartPopUp();
           dispatch(
             addToCart({
-              img: data.img1,
+              img: image,
               rate: data.rate,
               text: data.text,
               isDiscount: data.isDiscount,
@@ -273,6 +294,7 @@ function RecommendedProducts() {
   useEffect(() => {
     dispatch(fetchBestSelling());
   }, []);
+  select.map((r) => console.log(r.data()));
   return (
     <div className="mt-10">
       <Heading>recommended</Heading>
@@ -281,6 +303,7 @@ function RecommendedProducts() {
           slidesPerGroup={2}
           slidesPerView={2}
           spaceBetween={30}
+          loop={true}
           pagination={{
             clickable: false,
           }}
@@ -307,8 +330,7 @@ function RecommendedProducts() {
           {select.map((data, i) => (
             <SwiperSlide key={i}>
               <BestSellingCard
-                img1={data.data().img1}
-                img2={data.data().img2}
+                data={data.data().urls}
                 rate={data.data().rate}
                 discountRate={data.data().discountRate}
                 isDiscount={data.data().isDiscount}

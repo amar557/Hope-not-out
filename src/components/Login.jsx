@@ -4,7 +4,7 @@ import { RxCross2 } from "react-icons/rx";
 function Login({ handleLoginpage, current, handleAuthenticationPages }) {
   return (
     <div
-      className={`  transition-all py-3  w-full duration-300 top-0 right-0 bg-white  ${
+      className={`  transition-all py-3 absolute w-full duration-300 top-0 right-0 bg-white  ${
         current === "login" ? "-translate-x-0 z-50" : "  translate-x-full"
       }`}
     >
@@ -58,12 +58,14 @@ function Login({ handleLoginpage, current, handleAuthenticationPages }) {
           Create your account
         </span>
       </div>
-      <div
-        className="text-sm px-5"
-        onClick={() => handleAuthenticationPages("forgotpassword")}
-      >
+      <div className="text-sm px-5">
         Lost password?
-        <span className="hover:cursor-pointer">Recover password</span>
+        <span
+          className="hover:cursor-pointer"
+          onClick={() => handleAuthenticationPages("forgotpassword")}
+        >
+          Recover password
+        </span>
       </div>
     </div>
   );

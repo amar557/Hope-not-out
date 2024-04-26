@@ -12,7 +12,7 @@ function BestSelling() {
   const dispatch = useDispatch();
   const select = useSelector((me) => me.anchor.bestSellingProducts);
   useEffect(() => {
-    dispatch(fetchBestSelling());
+    dispatch(fetchBestSelling("bestsellingproducts"));
   }, []);
 
   return (
@@ -50,8 +50,9 @@ function BestSelling() {
           {select.map((data, i) => (
             <SwiperSlide key={i}>
               <BestSellingCard
-                img1={data.data().img1}
-                img2={data.data().img2}
+                // img1={data.data().img1}
+                // img2={data.data().img2}
+                data={data.data().urls}
                 rate={data.data().rate}
                 discountRate={data.data().discountRate}
                 isDiscount={data.data().discountRate}

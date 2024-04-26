@@ -10,7 +10,7 @@ function Authentication({ login, handleLoginpage }) {
     setCurrent(cur);
     // console.log(cur);
   }
-
+  console.log(current);
   return (
     <>
       <div
@@ -27,14 +27,17 @@ function Authentication({ login, handleLoginpage }) {
         <SignUp
           current={current}
           handleAuthenticationPages={handleAuthenticationPages}
+          handleLoginpage={handleLoginpage}
         />
         <Login
           current={current}
           handleAuthenticationPages={handleAuthenticationPages}
+          handleLoginpage={handleLoginpage}
         />
         <ForgetPass
           current={current}
           handleAuthenticationPages={handleAuthenticationPages}
+          handleLoginpage={handleLoginpage}
         />
       </div>
     </>

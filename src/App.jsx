@@ -7,8 +7,6 @@ import DetailsPage from "./pages/DetailsPage";
 import Cart from "./pages/Cart";
 import CheckOut from "./pages/CheckOut";
 import Collection from "./pages/Collection";
-// import Navbar from "./components/Navbar";
-// import Hero from "./components/hero";
 import NewFort from "./pages/NewFort";
 
 const router = createBrowserRouter([
@@ -18,13 +16,13 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "nav", element: <Categories /> },
-      { path: "form", element: <DataForm /> },
-      { path: "detailspage/:id", element: <DetailsPage /> },
+      { path: "/:page/:id", element: <DetailsPage /> },
       { path: "cart", element: <Cart /> },
       { path: "new", element: <NewFort /> },
       { path: "collection/:collectionname", element: <Collection /> },
     ],
   },
+  { path: "form", element: <DataForm /> },
   { path: "checkout", element: <CheckOut /> },
 ]);
 
