@@ -1,7 +1,37 @@
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
 import { FaStarOfLife } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 
 function Login({ handleLoginpage, current, handleAuthenticationPages }) {
+  const [logindata, setlogindata] = useState({});
+  const [error, setError] = useState("");
+  const auth = getAuth();
+  const timer = setTimeout(() => {
+    setError("");
+  }, 10000);
+
+  function onValueChanges(e) {
+    e.preventDefault();
+    let value = e.target.value;
+    let name = e.target.name;
+    setlogindata({ ...logindata, [name]: value });
+    setError("");
+    clearTimeout(timer);
+    // console.log(logindata);
+  }
+  async function handleLogin(e) {
+    e.preventDefault();
+    const { email, password } = logindata;
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log(auth.currentUser);
+    } catch (error) {
+      setError(error.message);
+    }
+    // timer();
+  }
+
   return (
     <div
       className={`  transition-all py-3 absolute w-full duration-300 top-0 right-0 bg-white  ${
@@ -14,7 +44,7 @@ function Login({ handleLoginpage, current, handleAuthenticationPages }) {
           <RxCross2 />
         </button>
       </div>
-      <form action="" className="p-5">
+      <form action="" className="p-5" onSubmit={handleLogin}>
         <div className="">
           <label htmlFor="email" className="relative ">
             <span className="text-sm capitalize ">email</span>
@@ -26,6 +56,7 @@ function Login({ handleLoginpage, current, handleAuthenticationPages }) {
             type="email"
             name="email"
             id=""
+            onChange={onValueChanges}
             className="border outline-none block w-full p-2 text-sm  focus:border-black "
           />
         </div>
@@ -38,15 +69,20 @@ function Login({ handleLoginpage, current, handleAuthenticationPages }) {
           </label>
           <input
             type="password"
-            name="email"
+            name="password"
             id=""
             className="border outline-none block w-full p-2 text-sm focus:border-black"
+            onChange={onValueChanges}
           />
         </div>
+        {error && (
+          <div className="text-red-600 text-xs mt-1 text-center">{error}</div>
+        )}
         <input
           type="submit"
           value="sign in"
           className="text-sm w-full bg-black rounded-3xl py-2 uppercase font-medium text-white mt-5"
+          onClick={handleLogin}
         />
       </form>
       <div className="text-sm px-5">

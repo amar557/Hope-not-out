@@ -26,11 +26,11 @@ function DetailsPage() {
 
   const params = useParams();
   const dispatch = useDispatch();
-  console.log(params);
+
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     dispatch(getDataByID(params));
-  }, [params.page, params.id]);
+  }, [params]);
   // console.log(selected);
   const data = selected.details;
   const storage = getStorage();

@@ -1,7 +1,23 @@
-import { FaStarOfLife } from "react-icons/fa";
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 
 function ForgetPass({ current, handleLoginpage, handleAuthenticationPages }) {
+  const [data, setData] = useState({});
+  const auth = getAuth();
+
+  function handleChanges(e) {
+    e.preventDefault();
+    const value = e.target.value;
+    const name = e.target.name;
+    setData({ ...data, [name]: value });
+  }
+  async function handleForgotPass(e) {
+    e.preventDefault();
+    await sendPasswordResetEmail(auth, data.email).then((e) =>
+      alert("jalksjdflkj")
+    );
+  }
   return (
     <div
       className={` transition-all py-3 absolute w-full duration-300 top-0 right-0 ${
@@ -26,12 +42,14 @@ function ForgetPass({ current, handleLoginpage, handleAuthenticationPages }) {
             name="email"
             id=""
             className="border outline-none block w-full p-2 text-sm  focus:border-black "
+            onChange={handleChanges}
           />
         </div>
 
         <input
           type="submit"
           value="reset password"
+          onClick={handleForgotPass}
           className="text-sm w-full bg-black rounded-3xl py-2 uppercase font-medium text-white mt-5"
         />
       </form>

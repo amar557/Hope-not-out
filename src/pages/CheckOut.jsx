@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoBagHandleOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -20,15 +20,22 @@ function CheckOut() {
       setCoupen("");
     }
   }
-
-  document.addEventListener("scroll", function () {
-    if (window.scrollY < 98) {
-      setFixed(false);
-    } else {
-      setFixed(true);
+  useEffect(() => {
+    function handleSticky() {
+      if (window.scrollY < 98) {
+        setFixed(false);
+      } else {
+        setFixed(true);
+      }
     }
-  });
 
+    document.addEventListener("scroll", handleSticky);
+
+    // Cleanup function to remove the event listener when the component unmounts
+    return () => {
+      document.removeEventListener("scroll", handleSticky);
+    };
+  }, []);
   return (
     <>
       <div className="flex items-center justify-between px-28 py-4 border-b  ">
@@ -161,7 +168,7 @@ function CheckOut() {
         <div
           className={`h-[130vh]  ${
             fixed ? "fixed top-0 w-1/2 left-[54.2%]" : "sticky top-[12%] w-2/4"
-          }   left-2/4  bg-[#fafafa] overflow-y-auto p-14`}
+          }   left-2/4  bg-[#fafafa]  p-14`}
         >
           <div className="w-4/5">
             {cartData.map((data, i) => (

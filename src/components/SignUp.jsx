@@ -1,7 +1,29 @@
+import { useState } from "react";
 import { FaStarOfLife } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
-
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
 function SignUp({ current, handleAuthenticationPages, handleLoginpage }) {
+  const [form, setForm] = useState({});
+  const auth = getAuth();
+  function handleChanges(e) {
+    e.preventDefault();
+    let value = e.target.value;
+    let name = e.target.name;
+    setForm({ ...form, [name]: value });
+  }
+  function handleCreateUser(e) {
+    e.preventDefault();
+
+    const { email, password, firstname, lastname } = form;
+    // console.log(firstname, lastname);
+    if (!email.includes("@") || password.length < 8) return;
+    console.log(auth);
+    createUserWithEmailAndPassword(auth, email, password).then((e) =>
+      console.log(e.user)
+    );
+    auth.currentUser.displayName = `${firstname} ${lastname}`;
+  }
+
   return (
     <div
       className={` transition-all duration-300 ${
@@ -14,15 +36,16 @@ function SignUp({ current, handleAuthenticationPages, handleLoginpage }) {
           <RxCross2 />
         </button>
       </div>
-      <form action="" className="p-5">
+      <form action="" className="p-5" onSubmit={() => handleCreateUser}>
         <div className="">
           <label htmlFor="email" className="relative ">
             <span className="text-sm capitalize ">first name</span>
           </label>
           <input
             type="text"
-            name="email"
+            name="firstname"
             id=""
+            onChange={handleChanges}
             className="border outline-none block w-full p-2 text-sm  focus:border-black "
           />
         </div>
@@ -32,9 +55,10 @@ function SignUp({ current, handleAuthenticationPages, handleLoginpage }) {
           </label>
           <input
             type="text"
-            name="email"
+            name="lastname"
             id=""
             className="border outline-none block w-full p-2 text-sm  focus:border-black "
+            onChange={handleChanges}
           />
         </div>
         <div className="">
@@ -49,6 +73,7 @@ function SignUp({ current, handleAuthenticationPages, handleLoginpage }) {
             name="email"
             id=""
             className="border outline-none block w-full p-2 text-sm  focus:border-black "
+            onChange={handleChanges}
           />
         </div>
         <div className="mt-3">
@@ -60,15 +85,17 @@ function SignUp({ current, handleAuthenticationPages, handleLoginpage }) {
           </label>
           <input
             type="password"
-            name="email"
+            name="password"
             id=""
             className="border outline-none block w-full p-2 text-sm focus:border-black"
+            onChange={handleChanges}
           />
         </div>
         <input
           type="submit"
           value="sign in"
           className="text-sm w-full bg-black rounded-3xl py-2 uppercase font-medium text-white mt-5"
+          onClick={(e) => handleCreateUser(e)}
         />
       </form>
       <div className="text-sm px-5">
@@ -89,6 +116,7 @@ function SignUp({ current, handleAuthenticationPages, handleLoginpage }) {
           Recover password
         </span>
       </div>
+      {/* <Notificatio err={ref.current} /> */}
     </div>
   );
 }

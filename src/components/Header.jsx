@@ -31,7 +31,7 @@ function Header() {
         <img src={Logo} alt="" className="w-28 cursor-pointer " />
       </Link>
       <div className=" gap-2 flex text-2xl">
-        <CiSearch className="cursor-pointer" onClick={() => navigate("/new")} />
+        <CiSearch className="cursor-pointer" />
         <PiUserThin className="cursor-pointer" onClick={handleLoginpage} />
         <span className="relative">
           <CiShoppingCart

@@ -77,3 +77,21 @@
 .ideal .swiper-pagination {
   display: none;
 }
+.err-msg::after {
+  content: "";
+  bottom: 0;
+  position: absolute;
+  left: 0;
+  /* width: 100%; */
+  animation: animate 5s infinite;
+  height: 3px;
+  background-color: aqua;
+}
+@keyframes animate {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
