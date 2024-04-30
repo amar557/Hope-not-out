@@ -30,7 +30,7 @@ function DetailsPage() {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     dispatch(getDataByID(params));
-  }, [params]);
+  }, [params, dispatch]);
   // console.log(selected);
   const data = selected.details;
   const storage = getStorage();
@@ -63,18 +63,19 @@ function DetailsPage() {
       ) : (
         <>
           <div className=" overflow-hidden flex items-start px-4  justify-start mt-8 flex-col md:flex-row ">
-            <div className="flex md:flex-row flex-col-reverse">
+            <div className="flex md:flex-row flex-col-reverse w-full">
               <div className="shrink-0 grow-1 gap-3 flex md:flex-col  md:me-3">
-                {images.map((img) => (
+                {images.map((img, i) => (
                   <img
+                    key={i}
                     src={img}
                     alt="first"
                     className="h-40 mt-3 md:mt-0 md:mb-3"
                   />
                 ))}
               </div>
-              <div className="shrink-0 grow-1 basis-9/12">
-                <img src={images[0]} alt="" />
+              <div className="shrink-0 grow-1 basis-full md:basis-9/12">
+                <img src={images[0]} alt="" className="w-full" />
               </div>
             </div>
             <div className="shrink-0 grow  basis-5/12  ">
@@ -292,9 +293,9 @@ function RecommendedProducts() {
   const select = useSelector((data) => data.anchor.bestSellingProducts);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchBestSelling());
+    dispatch(fetchBestSelling("bestsellingproducts"));
   }, []);
-  select.map((r) => console.log(r.data()));
+
   return (
     <div className="mt-10">
       <Heading>recommended</Heading>

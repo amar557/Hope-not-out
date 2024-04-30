@@ -7,8 +7,8 @@ export const fetchBestSelling = createAsyncThunk("data", async (param) => {
 
   return query.docs;
 });
-export const minKids = createAsyncThunk("data2", async () => {
-  const query = await getDocs(collection(firestore, "minikids"));
+export const SearchResult = createAsyncThunk("searchresult", async (ps) => {
+  const query = await getDocs(collection(firestore, ps));
   return query.docs;
 });
 

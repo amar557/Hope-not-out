@@ -9,10 +9,11 @@ import { CiSearch } from "react-icons/ci";
 import Logo from "../assets/Logo.svg";
 import { CiShoppingCart } from "react-icons/ci";
 import { PiUserThin } from "react-icons/pi";
+import SearchBar from "./SearchBar";
 function Header() {
   const [showsidebar, setShowSidebar] = useState(false);
   const [login, setlogin] = useState(false);
-
+  const [searchbar, setSearchBar] = useState(false);
   function handleLoginpage() {
     setlogin((d) => !d);
   }
@@ -22,7 +23,7 @@ function Header() {
   const select = useSelector((data) => data.cartData.cart.length);
   const navigate = useNavigate();
   return (
-    <div className="flex px-4 py-2 items-center  justify-between relative">
+    <div className="flex px-4 py-2 z-50 items-center  justify-between sticky">
       <RiMenu2Line
         className="cursor-pointer text-2xl "
         onClick={handleSideBar}
@@ -31,7 +32,10 @@ function Header() {
         <img src={Logo} alt="" className="w-28 cursor-pointer " />
       </Link>
       <div className=" gap-2 flex text-2xl">
-        <CiSearch className="cursor-pointer" />
+        <CiSearch
+          className="cursor-pointer"
+          onClick={() => setSearchBar((e) => !e)}
+        />
         <PiUserThin className="cursor-pointer" onClick={handleLoginpage} />
         <span className="relative">
           <CiShoppingCart
@@ -43,6 +47,7 @@ function Header() {
           </span>
         </span>
         <Authentication login={login} handleLoginpage={handleLoginpage} />
+        <SearchBar searchbar={searchbar} setSearchBar={setSearchBar} />
       </div>
       <Sidebar showsidebar={showsidebar} handleSideBar={handleSideBar} />
     </div>

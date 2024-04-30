@@ -11,9 +11,11 @@ import "swiper/css/pagination";
 function BestSelling() {
   const dispatch = useDispatch();
   const select = useSelector((me) => me.anchor.bestSellingProducts);
+
   useEffect(() => {
     dispatch(fetchBestSelling("bestsellingproducts"));
-  }, []);
+  }, [dispatch]);
+  // console.log(select[0].id);
 
   return (
     <div className="flex flex-col gap-6">

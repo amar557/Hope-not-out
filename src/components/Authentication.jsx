@@ -4,13 +4,11 @@ import Login from "./Login";
 import SignUp from "./SignUp";
 
 function Authentication({ login, handleLoginpage }) {
-  // let current = "login";
   const [current, setCurrent] = useState("login");
   function handleAuthenticationPages(cur) {
     setCurrent(cur);
-    // console.log(cur);
   }
-  console.log(current);
+
   return (
     <>
       <div
@@ -20,7 +18,7 @@ function Authentication({ login, handleLoginpage }) {
         onClick={handleLoginpage}
       ></div>
       <div
-        className={` fixed transition-all py-3 h-screen w-1/3 duration-300 top-0 right-0 bg-white  ${
+        className={` fixed transition-all py-3 h-screen w-full md:w-1/3 duration-300 top-0 right-0 bg-white  ${
           login ? "-translate-x-0 z-50" : "translate-x-full"
         }`}
       >

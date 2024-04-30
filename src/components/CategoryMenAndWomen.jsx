@@ -27,7 +27,7 @@ function CategoryMenAndWomen() {
       <Heading> categories mens & womens</Heading>
       <div className="flex md:gap-3 gap-2 mt-12 flex-wrap">
         {categoriesData.map((data, i) => (
-          <HoveredCard img={data.img} title={data.title} to={data.to} />
+          <HoveredCard img={data.img} title={data.title} key={i} to={data.to} />
         ))}
       </div>
     </div>

@@ -2,13 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import mainstore from "./store";
 import detailsPage from "./DatailsPage";
 import cartData from "./CartSlice";
-import pages from "./pages";
+import SearchResults from "./SearchResults";
 const store = configureStore({
   reducer: {
     anchor: mainstore,
     detailsPage: detailsPage,
     cartData,
-    pages,
+    SearchResults,
   },
 });
 export default store;

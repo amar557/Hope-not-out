@@ -9,7 +9,7 @@ let initialState = {
 const dataPageSlice = createSlice({
   name: "datapage",
   initialState,
-  reducers: {},
+
   extraReducers: (builder) => {
     builder.addCase(getDataByID.pending, (state, action) => {
       state.isLoading = true;

@@ -15,7 +15,6 @@ function Footer() {
         setDisableButton(true);
       } else {
         setDisableButton(false);
-
         setOpenFooters(Array(footerData.length).fill(false));
       }
     });
@@ -70,9 +69,9 @@ function FooterBlock({
           disabled={disableButton}
         >
           <img src={imgLink} alt="" className="" />
-          <button className="md:hidden block">
+          <div className="md:hidden block">
             <GoPlus />
-          </button>
+          </div>
         </button>
       ) : (
         <button
