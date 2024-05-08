@@ -19,6 +19,7 @@ const categoriesData = [
   {
     img: "https://www.hopenotout.com/cdn/shop/files/Women-Tiles_b8871734-c8c4-4362-9cc1-33f3a727fd05_360x.jpg?v=1708808572",
     title: "women eastern",
+    to: "women-eastern",
   },
 ];
 function CategoryMenAndWomen() {

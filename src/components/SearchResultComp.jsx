@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 function SearchResultComp({ data, category, setSearchBar, id }) {
   const storage = getStorage();
+  // console.log(data ? "hi there" : "niklo");
+  // console.log(data.urls);
   const navigate = useNavigate();
   const [url, setUrl] = useState("");
   //   console.log(data);
@@ -28,29 +30,31 @@ function SearchResultComp({ data, category, setSearchBar, id }) {
   }, [storage, data]);
 
   return (
-    <div
-      className="w-11/12 mx-auto flex items-start justify-start gap-5"
-      onClick={() => goToDetailsPage(id)}
-    >
-      <img src={url} alt="" className="h-24 w-auto" />
-      <div className="">
-        <h1 className="text-sm font-medium capitalize">{data.text}</h1>
-        <p className="text-xs">
-          <span
-            className={`text-slate-700  ${
-              data.isDiscount ? "line-through" : ""
-            } capitalize`}
-          >
-            rs {data.rate}
-          </span>
-          {data.isDiscount && (
-            <span className="text-red-500 capitalize ms-2">
-              rs {data.discountRate}
+    <>
+      <div
+        className="w-11/12 mx-auto flex items-start justify-start gap-5"
+        onClick={() => goToDetailsPage(id)}
+      >
+        <img src={url} alt="" className="h-24 w-auto" />
+        <div className="">
+          <h1 className="text-sm font-medium capitalize">{data.text}</h1>
+          <p className="text-xs">
+            <span
+              className={`text-slate-700  ${
+                data.isDiscount ? "line-through" : ""
+              } capitalize`}
+            >
+              rs {data.rate}
             </span>
-          )}
-        </p>
+            {data.isDiscount && (
+              <span className="text-red-500 capitalize ms-2">
+                rs {data.discountRate}
+              </span>
+            )}
+          </p>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

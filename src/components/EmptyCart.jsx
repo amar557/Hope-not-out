@@ -16,7 +16,7 @@ function EmptyCart() {
         Before proceed to checkout you must add some products to your shopping
         cart. You will find a lot of interesting products on our "Shop" page.
       </p>
-      <div className="w-full md:w-1/4 mt-5 grow " onClick={() => navigate("/")}>
+      <div className="w-full md:w-1/3 mt-5 grow " onClick={() => navigate("/")}>
         <Button>return to shop</Button>
       </div>
     </div>

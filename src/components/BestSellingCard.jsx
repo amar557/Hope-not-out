@@ -12,38 +12,18 @@ function BestSellingCard({
   discountRate,
   id,
 }) {
-  const storage = getStorage();
   const navigate = useNavigate();
-  const [urllist, setUrl] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const urls = [];
-      for (const d of data) {
-        try {
-          const url = await getDownloadURL(ref(storage, d));
-          urls.push(url);
-        } catch (error) {
-          console.error("Error getting download URL:", error);
-        }
-      }
-
-      setUrl(urls);
-    }
-
-    fetchData();
-  }, [storage, data]);
 
   return (
     <div className="relative  grow shrink-0 basis-1/6 h-max  transition-all duration-500 overflow-hidden  ">
       <div className="md:h-[31vw] h-[69vw] lg:h-[25vw] overflow-hidden group hover:cursor-pointer relative ">
         <img
-          src={urllist[0]}
+          src={data[0]}
           alt=""
           className="  group-hover:opacity-0 transition-all duration-500 "
         />
         <img
-          src={urllist[1]}
+          src={data[1]}
           alt=""
           className=" group-hover:scale-110 transition-all duration-1000  absolute top-0 right-0 opacity-0 group-hover:opacity-100"
         />
@@ -64,11 +44,15 @@ function BestSellingCard({
           </button>
         </div>
       </div>
-      <p className="font-medium mt-3">{text}</p>
+      <p className="font-medium mt-3 text-sm">{text}</p>
       <div className="space-x-2">
-        <span className={`${isDiscount ? "line-through" : ""}`}>Rs {rate}</span>
+        <span className={`${isDiscount ? "line-through" : ""} text-sm`}>
+          Rs.{rate}.00
+        </span>
         {isDiscount && (
-          <span className="text-red-500 font-medium">{discountRate}</span>
+          <span className="text-red-500 font-medium capitalize text-sm">
+            Rs.{discountRate}.00
+          </span>
         )}
       </div>
       <span className="absolute top-2 right-2 bg-red-600 text-[10px] py-1 px-2 text-white">

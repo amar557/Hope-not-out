@@ -75,11 +75,11 @@ function SearchBar({ searchbar, setSearchBar }) {
             </button>
           </div>
         </div>
-        <div className=" mx-auto">
-          <h1 className="ps-4 capitalize border-t mt-4 text-sm font-semibold shadow-lg py-2 px-1">
+        <div className=" mx-auto h-full overflow-y-scroll">
+          <h1 className="ps-4 capitalize border-t pt-4 text-sm font-semibold shadow-lg py-2 px-1 fixed w-full bg-white">
             results
           </h1>
-          <div className="mt-5 overflow-y-scroll h-1/2">
+          <div className="mt-14 ">
             {s
               .filter((e) =>
                 search === ""

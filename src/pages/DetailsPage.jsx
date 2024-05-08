@@ -8,7 +8,7 @@ import { sizeData } from "../data/Size";
 import { FaMinus } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import BestSellingCard from "../components/BestSellingCard";
-import { Pagination } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { Heading } from "../components/CategoryMenAndWomen";
 import ViewCartPopUp from "../components/ViewCartPopUp";
 import { addToCart, SubTotal } from "../redux/CartSlice";
@@ -16,56 +16,42 @@ import BaadMainPop from "../components/BaadMainPop";
 import Loader from "../components/Loader";
 import "swiper/css";
 import "swiper/css/pagination";
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
+import { getStorage } from "firebase/storage";
+import PrevButton from "../components/PrevButton";
+import NextButton from "../components/NextButton";
 
 function DetailsPage() {
   const [viewCart, setViewCart] = useState(false);
   const [currentSize, setCurrentSize] = useState("");
   const [images, setImages] = useState([]);
-  const selected = useSelector((data) => data.detailsPage);
-
   const params = useParams();
   const dispatch = useDispatch();
+
+  const data = useSelector((data) => data.detailsPage.details);
+  let isLoading = useSelector((data) => data.detailsPage.isLoading);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     dispatch(getDataByID(params));
   }, [params, dispatch]);
-  // console.log(selected);
-  const data = selected.details;
+
   const storage = getStorage();
-  useEffect(() => {
-    async function fetchData() {
-      const urls = [];
-      for (const d of data.urls) {
-        try {
-          const url = await getDownloadURL(ref(storage, d));
-          urls.push(url);
-        } catch (error) {
-          console.error("Error getting download URL:", error);
-        }
-      }
-
-      setImages(urls);
-    }
-
-    fetchData();
-  }, [storage, data]);
 
   function handleCartPopUp() {
     setViewCart((view) => !view);
   }
 
   return (
+    // <div>aksdjfk</div>
     <div>
-      {selected.isLoading ? (
+      {isLoading ? (
         <Loader />
       ) : (
         <>
           <div className=" overflow-hidden flex items-start px-4  justify-start mt-8 flex-col md:flex-row ">
             <div className="flex md:flex-row flex-col-reverse w-full">
-              <div className="shrink-0 grow-1 gap-3 flex md:flex-col  md:me-3">
-                {images.map((img, i) => (
+              <div className="shrink-0  gap-3 flex md:flex-col  md:me-3">
+                {data.urls?.map((img, i) => (
                   <img
                     key={i}
                     src={img}
@@ -74,11 +60,28 @@ function DetailsPage() {
                   />
                 ))}
               </div>
-              <div className="shrink-0 grow-1 basis-full md:basis-9/12">
-                <img src={images[0]} alt="" className="w-full" />
+              <div className="md:w-52 w-full h-52 shrink basis-4/5 group  grow-1  md:basis-9/12">
+                <Swiper
+                  navigation={true}
+                  modules={[Navigation]}
+                  loop={true}
+                  className="mySwiper"
+                >
+                  {data.urls?.map((img, i) => (
+                    <SwiperSlide>
+                      <div className="shrink-0 grow-1 basis-full md:basis-9/12 hover:cursor-grab">
+                        <img src={img} alt="" className="w-full" />
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                  <div className="absolute opacity-0 group-hover:opacity-100 top-1/2 left-1/2 px-2 -translate-y-1/2 flex items-center justify-between w-full z-10 transition-all -translate-x-1/2">
+                    <PrevButton />
+                    <NextButton />
+                  </div>
+                </Swiper>
               </div>
             </div>
-            <div className="shrink-0 grow  basis-5/12  ">
+            <div className="shrink-0 grow  basis-5/12 md:ps-2 lg:ps-0  ">
               <h1 className="text-2xl  font-semibold font-poppins">
                 {data.text}
               </h1>
@@ -95,7 +98,7 @@ function DetailsPage() {
                 </p>
                 {data.isDiscount && (
                   <p className="text-red-500 uppercase  text-xl">
-                    rs.{data.discountRate}
+                    rs.{data.discountRate}.00
                   </p>
                 )}
                 {data.isDiscount && (
@@ -117,7 +120,7 @@ function DetailsPage() {
                 data={data}
                 currentSize={currentSize}
                 id={params.id}
-                image={images[0]}
+                image={data.urls && data.urls[0]}
               />
               <PictureDiscription />
             </div>

@@ -95,3 +95,9 @@
     width: 0;
   }
 }
+.swiper-button-next {
+  display: none;
+}
+.swiper-button-prev {
+  display: none;
+}
