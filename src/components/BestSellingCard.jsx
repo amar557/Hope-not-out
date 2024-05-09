@@ -54,9 +54,11 @@ function BestSellingCard({
           </span>
         )}
       </div>
-      <span className="absolute top-2 right-2 bg-red-600 text-[10px] py-1 px-2 text-white">
-        -50%
-      </span>
+      {isDiscount && (
+        <span className="absolute top-2 right-2 bg-red-600 text-[10px] py-1 px-2 text-white">
+          -{((rate - discountRate) / rate) * 100}%
+        </span>
+      )}
     </div>
   );
 }

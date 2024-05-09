@@ -61,24 +61,34 @@ function DetailsPage() {
                 ))}
               </div>
               <div className="md:w-52 w-full h-52 shrink basis-4/5 group  grow-1  md:basis-9/12">
-                <Swiper
-                  navigation={true}
-                  modules={[Navigation]}
-                  loop={true}
-                  className="mySwiper"
-                >
-                  {data.urls?.map((img, i) => (
-                    <SwiperSlide>
-                      <div className="shrink-0 grow-1 basis-full md:basis-9/12 hover:cursor-grab">
-                        <img src={img} alt="" className="w-full" />
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                  <div className="absolute opacity-0 group-hover:opacity-100 top-1/2 left-1/2 px-2 -translate-y-1/2 flex items-center justify-between w-full z-10 transition-all -translate-x-1/2">
-                    <PrevButton />
-                    <NextButton />
+                {data.urls && data.urls.length > 1 ? (
+                  <Swiper
+                    navigation={true}
+                    modules={[Navigation]}
+                    loop={true}
+                    className="mySwiper"
+                  >
+                    {data.urls?.map((img, i) => (
+                      <SwiperSlide>
+                        <div className="shrink-0 grow-1 basis-full md:basis-9/12 hover:cursor-grab">
+                          <img src={img} alt="" className="w-full" />
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                    <div className="absolute opacity-0 group-hover:opacity-100 top-1/2 left-1/2 px-2 -translate-y-1/2 flex items-center justify-between w-full z-10 transition-all -translate-x-1/2">
+                      <PrevButton />
+                      <NextButton />
+                    </div>
+                  </Swiper>
+                ) : (
+                  <div className="shrink-0 grow-1 basis-full md:basis-9/12 hover:cursor-grab">
+                    <img
+                      src={data.urls && data.urls[0]}
+                      alt=""
+                      className="w-full"
+                    />
                   </div>
-                </Swiper>
+                )}
               </div>
             </div>
             <div className="shrink-0 grow  basis-5/12 md:ps-2 lg:ps-0  ">

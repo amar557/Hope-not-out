@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 function ViewCartPopUp({ handleCartPopUp }) {
   return (
-    // <></>
     <div className="h-[100vh] w-full fixed top-0 left-0 overflow-y-hidden z-50">
       <button
         className="absolute top-5 right-5 bg-white p-3 "
@@ -18,7 +17,7 @@ function ViewCartPopUp({ handleCartPopUp }) {
         <p className="mb-5 text-lg  sm:text-xl uppercase font-semibold">
           Product was successfully added to your cart.
         </p>
-        <div className="mb-5  flex flex-col md:flex-row gap-5 items-center ">
+        <div className="mb-5  flex flex-col justify-center md:flex-row gap-5 items-center ">
           <button
             className="border-b w-max border-gray-300 hover:border-b-2 transition-all  hover:border-gray-500"
             onClick={handleCartPopUp}
@@ -26,7 +25,7 @@ function ViewCartPopUp({ handleCartPopUp }) {
             continue shopping
           </button>
           <button
-            className="border-2 border-black px-4 text-lg font-semibold py-1 rounded-3xl"
+            className="border-2 border-black px-5 text-base font-semibold py-1 rounded-3xl hover:bg-black hover:text-white transition-all"
             onClick={handleCartPopUp}
           >
             <Link to="/cart">view cart</Link>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { navdata, info } from "../data/navdata";
-import { NavLink } from "react-router-dom";
 
 function Menu() {
   const [openMenu, setOpenMenu] = useState(Array(navdata.length).fill(false));

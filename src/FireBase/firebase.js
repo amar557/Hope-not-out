@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 const firebaseConfig = {
-  apiKey: "AIzaSyDebYBfsCrXt11hPjm0mqGqp2FCuGXG9-c",
+  apiKey: import.meta.env.VITE_APP_FIREBASE_KEY,
   authDomain: "hopenotout-4048e.firebaseapp.com",
   projectId: "hopenotout-4048e",
   storageBucket: "hopenotout-4048e.appspot.com",

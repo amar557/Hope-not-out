@@ -101,3 +101,12 @@
 .swiper-button-prev {
   display: none;
 }
+.cart:hover .para {
+  opacity: 1;
+  z-index: 500;
+  visibility: visible;
+}
+.para {
+  opacity: 0;
+  visibility: hidden;
+}

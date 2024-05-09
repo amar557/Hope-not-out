@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 function Notificatio({ err, setError }) {
   return (
     <div

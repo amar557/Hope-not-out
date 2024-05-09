@@ -4,13 +4,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 function SearchResultComp({ data, category, setSearchBar, id }) {
   const storage = getStorage();
-  // console.log(data ? "hi there" : "niklo");
-  // console.log(data.urls);
   const navigate = useNavigate();
   const [url, setUrl] = useState("");
-  //   console.log(data);
+
   function goToDetailsPage(id) {
-    console.log(id);
     navigate(`${category}/${id}`);
     setSearchBar((e) => !e);
   }

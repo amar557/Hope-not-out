@@ -25,7 +25,7 @@ function BestSelling() {
     }
     getbestsellingdata();
   }, []);
-  console.log(data);
+  console.log(data.map((e) => e.data()));
   return (
     <div className="flex flex-col gap-6">
       <Heading>best seller</Heading>
@@ -69,7 +69,7 @@ function BestSelling() {
                     data={data.data().urls}
                     rate={data.data().rate}
                     discountRate={data.data().discountRate}
-                    isDiscount={data.data().discountRate}
+                    isDiscount={data.data().isDiscount}
                     text={data.data().text}
                     id={data.id}
                   />

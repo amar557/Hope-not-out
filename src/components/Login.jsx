@@ -18,18 +18,15 @@ function Login({ handleLoginpage, current, handleAuthenticationPages }) {
     setlogindata({ ...logindata, [name]: value });
     setError("");
     clearTimeout(timer);
-    // console.log(logindata);
   }
   async function handleLogin(e) {
     e.preventDefault();
     const { email, password } = logindata;
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log(auth.currentUser);
     } catch (error) {
       setError(error.message);
     }
-    // timer();
   }
 
   return (

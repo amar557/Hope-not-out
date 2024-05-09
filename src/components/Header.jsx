@@ -37,11 +37,12 @@ function Header() {
           onClick={() => setSearchBar((e) => !e)}
         />
         <PiUserThin className="cursor-pointer" onClick={handleLoginpage} />
-        <span className="relative">
+        <span className="relative ">
           <CiShoppingCart
-            className="cursor-pointer"
+            className="cursor-pointer "
             onClick={() => navigate("/cart")}
           />
+
           <span className="absolute -top-2 -right-2 text-xs bg-black text-white w-4 h-4 grid place-content-center rounded-full">
             {select}
           </span>

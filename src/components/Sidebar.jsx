@@ -13,7 +13,7 @@ function Sidebar({ showsidebar, handleSideBar }) {
   function handleMenu() {
     setMenu(true);
     setCategory(false);
-    // console.log(menu);
+  
   }
   return (
     <div

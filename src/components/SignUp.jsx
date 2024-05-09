@@ -15,12 +15,9 @@ function SignUp({ current, handleAuthenticationPages, handleLoginpage }) {
     e.preventDefault();
 
     const { email, password, firstname, lastname } = form;
-    // console.log(firstname, lastname);
     if (!email.includes("@") || password.length < 8) return;
-    console.log(auth);
-    createUserWithEmailAndPassword(auth, email, password).then((e) =>
-      console.log(e.user)
-    );
+
+    createUserWithEmailAndPassword(auth, email, password).then((e) => {});
     auth.currentUser.displayName = `${firstname} ${lastname}`;
   }
 
