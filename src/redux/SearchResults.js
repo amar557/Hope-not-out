@@ -12,6 +12,7 @@ const searchResult = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(SearchResult.pending, (state, action) => {
+      state.data = [];
       state.isLoading = true;
     });
     builder.addCase(SearchResult.fulfilled, (state, action) => {

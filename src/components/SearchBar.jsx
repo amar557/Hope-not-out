@@ -11,7 +11,11 @@ function SearchBar({ searchbar, setSearchBar }) {
   const [s, setS] = useState([]);
   const dispatch = useDispatch();
   const sele = useSelector((e) => e.SearchResults.data);
-
+  const searched = s.filter((e) =>
+    search === ""
+      ? s
+      : e.text.toLowerCase().includes(search.toLocaleLowerCase())
+  );
   useEffect(() => {
     dispatch(SearchResult(category));
   }, [category]);
@@ -58,9 +62,14 @@ function SearchBar({ searchbar, setSearchBar }) {
           >
             <option value="bestsellingproducts">bestsellingproducts</option>
             <option value="men">men</option>
+            <option value="men-eastern">men eastern</option>
             <option value="women">women</option>
-            <option value="kids">kids</option>
-            <option value="minikids">minikids</option>
+            <option value="women-eastern">women eastern</option>
+            <option value="boys">boys</option>
+            <option value="mini-boys">mini boys</option>
+            <option value="girls">girls</option>
+            <option value="mini-girls">girls mini</option>
+            <option value="girls-eastern">girls eastern</option>
           </select>
           <div className="border rounded-3xl w-11/12 mx-auto px-4 py-1 mt-4 flex items-center justify-center ">
             <input
@@ -79,27 +88,25 @@ function SearchBar({ searchbar, setSearchBar }) {
           <h1 className="ps-4 capitalize border-t pt-4 text-sm font-semibold shadow-lg py-2 px-1 fixed w-full bg-white">
             results
           </h1>
-          <div className="mt-14 ">
-            {s
-              .filter((e) =>
-                search === ""
-                  ? s
-                  : e.text.toLowerCase().includes(search.toLocaleLowerCase())
-              )
-              .map((data, i) => (
-                <SearchResultComp
-                  data={data}
-                  key={i}
-                  category={category}
-                  id={data.id}
-                  setSearchBar={setSearchBar}
-                />
-              ))}
+          <div className="mt-14 space-y-2">
+            {searched.map((data, i) => (
+              <SearchResultComp
+                data={data}
+                key={i}
+                category={category}
+                id={data.id}
+                setSearchBar={setSearchBar}
+              />
+            ))}
           </div>
-          <button className="text-sm ms-4 flex items-center gap-1 justify-start hover:gap-2 transition-all ">
-            <span>view all</span>
-            <IoIosArrowRoundForward />
-          </button>
+          {searched.length > 0 ? (
+            <button className="text-sm ms-4 flex items-center gap-1 justify-start hover:gap-2 transition-all ">
+              <span>view all</span>
+              <IoIosArrowRoundForward />
+            </button>
+          ) : (
+            <p className="text-sm ps-3 mt-2">no items</p>
+          )}
         </div>
       </div>
     </>

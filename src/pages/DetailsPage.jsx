@@ -192,7 +192,7 @@ function SizeContainer({ setCurrentSize, currentSize }) {
       <ul className="flex gap-2 flex-wrap">
         {sizeData.map((data, i) => (
           <li
-            className={`bg-[#f5f5f5] hover:bg-black hover:text-white hover:cursor-pointer transition-all duration-300 py-3 grid place-content-center px-2 basis-1/5  md:basis-[10.33%] md:py-2 grow-0 text-xs font-semibold ${
+            className={`bg-[#f5f5f5] hover:bg-black hover:text-white hover:cursor-pointer transition-all duration-300 py-3 grid place-content-center px-1 basis-1/4   md:basis-[10.33%] md:py-2 grow-0 text-xs font-semibold ${
               data === currentSize && "bg-black text-white"
             } `}
             onClick={(e) => click.current(i)}
@@ -263,7 +263,7 @@ function PictureDiscription() {
         src="https://cdn.shopify.com/s/files/1/0247/3331/9215/files/Boys_Crew_Neck_Tee_Shirt_91f571f5-26ef-4116-a901-080e8a255daa.jpg?v=1710882373"
         alt=""
       />
-      <p className="mt-4 capitalize text-base font-normal">
+      <p className="mt-4 capitalize text-sm font-normal">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia,
         fuga! Eveniet asperiores iste laudantium architecto maxime placeat
         obcaecati alias veritatis expedita autem similique, ratione sequi harum

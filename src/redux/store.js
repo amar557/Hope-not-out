@@ -8,6 +8,7 @@ const slice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchBestSelling.pending, (state, action) => {
+      state.bestSellingProducts = [];
       state.loading = true;
     });
     builder.addCase(fetchBestSelling.fulfilled, (state, action) => {

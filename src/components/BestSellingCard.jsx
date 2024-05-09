@@ -1,5 +1,3 @@
-import { getDownloadURL, getStorage, ref } from "firebase/storage";
-import { useEffect, useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { useNavigate } from "react-router";
 
@@ -15,15 +13,15 @@ function BestSellingCard({
   const navigate = useNavigate();
 
   return (
-    <div className="relative  grow shrink-0 basis-1/6 h-max  transition-all duration-500 overflow-hidden  ">
+    <div className="relative  grow-0 shrink-0 basis-1/6 h-max  transition-all duration-500 overflow-hidden  ">
       <div className="md:h-[31vw] h-[69vw] lg:h-[25vw] overflow-hidden group hover:cursor-pointer relative ">
         <img
-          src={data[0]}
+          src={data && data[0]}
           alt=""
           className="  group-hover:opacity-0 transition-all duration-500 "
         />
         <img
-          src={data[1]}
+          src={data && data[1]}
           alt=""
           className=" group-hover:scale-110 transition-all duration-1000  absolute top-0 right-0 opacity-0 group-hover:opacity-100"
         />
@@ -49,6 +47,7 @@ function BestSellingCard({
         <span className={`${isDiscount ? "line-through" : ""} text-sm`}>
           Rs.{rate}.00
         </span>
+
         {isDiscount && (
           <span className="text-red-500 font-medium capitalize text-sm">
             Rs.{discountRate}.00

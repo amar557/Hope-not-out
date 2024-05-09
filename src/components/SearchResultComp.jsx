@@ -44,11 +44,11 @@ function SearchResultComp({ data, category, setSearchBar, id }) {
                 data.isDiscount ? "line-through" : ""
               } capitalize`}
             >
-              rs {data.rate}
+              rs {data.rate}.00
             </span>
             {data.isDiscount && (
               <span className="text-red-500 capitalize ms-2">
-                rs {data.discountRate}
+                Rs {data.discountRate}.00
               </span>
             )}
           </p>
