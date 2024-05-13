@@ -43,11 +43,11 @@ function HomePagination() {
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
-        loop={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
+        // loop={true}
+        // autoplay={{
+        //   delay: 2500,
+        //   disableOnInteraction: false,
+        // }}
         pagination={{
           clickable: true,
         }}
@@ -65,12 +65,12 @@ function HomePagination() {
               <source
                 media="(min-width: 372px)"
                 srcSet={data.resImg}
-                className="h-[100vh] sm:h-[50vw] w-full"
+                className="h-[100vh] sm:h-[80vw] w-full"
               />
               <img
                 src={data.resImg}
                 alt="Description of the small "
-                className="h-[100vh] sm:h-[50vw] w-full"
+                className="h-[100vh] sm:h-[80vw] md:h-[50vw] w-full"
               />
             </picture>
           </SwiperSlide>

@@ -14,16 +14,20 @@ function BestSellingCard({
 
   return (
     <div className="relative  grow-0 shrink-0 basis-1/6 h-max  transition-all duration-500 overflow-hidden  ">
-      <div className="md:h-[31vw] h-[69vw] lg:h-[25vw] overflow-hidden group hover:cursor-pointer relative ">
+      <div className="md:h-[31vw] w-full h-[69vw] lg:h-[25vw] overflow-hidden group hover:cursor-pointer relative ">
         <img
           src={data && data[0]}
           alt=""
-          className="  group-hover:opacity-0 transition-all duration-500 "
+          className={` ${
+            data && data[1] && "group-hover:opacity-0"
+          } transition-all duration-500 `}
         />
         <img
           src={data && data[1]}
           alt=""
-          className=" group-hover:scale-110 transition-all duration-1000  absolute top-0 right-0 opacity-0 group-hover:opacity-100"
+          className={` ${
+            data && data[1] && "group-hover:scale-110 group-hover:opacity-100"
+          }  transition-all duration-1000  absolute top-0 right-0 opacity-0 `}
         />
         <button className="bg-white text-black absolute bottom-6 right-2 p-1 rounded-full text-lg lg:hidden block ">
           <BsThreeDots />

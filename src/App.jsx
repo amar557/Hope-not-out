@@ -8,10 +8,12 @@ import Cart from "./pages/Cart";
 import CheckOut from "./pages/CheckOut";
 import Collection from "./pages/Collection";
 import NewFort from "./pages/NewFort";
+import Error from "./pages/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <Error />,
     element: <Layout />,
     children: [
       { path: "/", element: <Home /> },
@@ -19,11 +21,16 @@ const router = createBrowserRouter([
       { path: "/:page/:id", element: <DetailsPage /> },
       { path: "cart", element: <Cart /> },
 
-      { path: "collection/:collectionname", element: <Collection /> },
+      {
+        path: "collection/:collectionname",
+        element: <Collection />,
+        errorElement: <NewFort />,
+      },
     ],
   },
   { path: "form", element: <DataForm /> },
   { path: "checkout", element: <CheckOut /> },
+  { path: "error", element: <Error /> },
 ]);
 
 function App() {

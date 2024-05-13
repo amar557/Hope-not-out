@@ -64,7 +64,7 @@ function FooterBlock({
     <div className={`${styling} basis-1/4 grow-0 shrink-0`}>
       {img ? (
         <button
-          className="flex mb-7 items-center justify-between w-full"
+          className="flex md:mb-7 mb-2 items-center justify-between w-full"
           onClick={() => handleFooter(index)}
           disabled={disableButton}
         >
@@ -75,7 +75,7 @@ function FooterBlock({
         </button>
       ) : (
         <button
-          className="flex items-center mb-7 justify-between w-full"
+          className="flex items-center md:mb-7 mb-2 justify-between w-full"
           onClick={() => handleFooter(index)}
           disabled={disableButton}
         >
@@ -86,10 +86,10 @@ function FooterBlock({
         </button>
       )}
 
-      <div className="space-y-4">
+      <div className="md:space-y-4 space-y-1">
         {isOpen &&
           child.map((childItem, childIndex) => (
-            <div key={childIndex} className="flex gap-2 items-center">
+            <div key={childIndex} className="flex gap-1 md:gap-2 items-center">
               {childItem.icon && (
                 <p className="text-[#878787]">{<childItem.icon />}</p>
               )}

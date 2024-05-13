@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import { SearchResult } from "../redux/AsyncFIrebase";
 import { useDispatch, useSelector } from "react-redux";
 import SearchResultComp from "./SearchResultComp";
+import { useNavigate } from "react-router";
 function SearchBar({ searchbar, setSearchBar }) {
   const [search, setSearch] = useState("");
   const [category, setcategory] = useState("bestsellingproducts");
   const [s, setS] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const sele = useSelector((e) => e.SearchResults.data);
   const searched = s.filter((e) =>
     search === ""
@@ -100,7 +102,13 @@ function SearchBar({ searchbar, setSearchBar }) {
             ))}
           </div>
           {searched.length > 0 ? (
-            <button className="text-sm ms-4 flex items-center gap-1 justify-start hover:gap-2 transition-all ">
+            <button
+              className="text-sm ms-4 flex items-center gap-1 justify-start hover:gap-2 transition-all "
+              onClick={() => {
+                navigate(`collection/${category}`);
+                setSearchBar((open) => !open);
+              }}
+            >
               <span>view all</span>
               <IoIosArrowRoundForward />
             </button>

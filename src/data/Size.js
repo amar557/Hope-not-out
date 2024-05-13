@@ -8,3 +8,15 @@ export const sizeData = [
   "11-12Y",
   "13-14Y",
 ];
+
+export const AllPages = [
+  "men",
+  "men-eastern",
+  "women",
+  "women-eastern",
+  "boys",
+  "mini-boys",
+  "girls",
+  "mini-girls",
+  "girls-eastern",
+];

@@ -25,12 +25,12 @@ function Cart() {
       {select.length > 0 ? (
         <>
           <div className="w-10/12 mx-auto mt-16">
-            <div className="flex items-center justify-between border-b pb-3 border-[#00000052]">
+            <div className="lg:flex items-center hidden justify-between border-b pb-3 border-[#00000052]">
               <span className="text-lg font-semibold uppercase grow-0 shrink-0 basis-4/12">
                 product
               </span>
               {data.map((data) => (
-                <span className="text-lg font-semibold uppercase grow-0 shrink-0 basis-1/5 text-center">
+                <span className="text-lg font-semibold uppercase grow-0 shrink-0 basis-1/5 text-center ">
                   {data}
                 </span>
               ))}

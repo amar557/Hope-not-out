@@ -1,11 +1,12 @@
 export const navdata = [
   {
-    nav: "summer",
+    nav: "mid-summer",
     isChildren: true,
+    to: "",
     children: ["man", "woman", "boys", "girls"],
   },
   {
-    nav: "winter'23",
+    nav: "summer'24",
     isChildren: true,
     children: ["man", "woman", "boys", "girls"],
   },

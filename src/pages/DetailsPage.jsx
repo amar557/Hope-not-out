@@ -23,13 +23,15 @@ import NextButton from "../components/NextButton";
 function DetailsPage() {
   const [viewCart, setViewCart] = useState(false);
   const [currentSize, setCurrentSize] = useState("");
-  const [images, setImages] = useState([]);
+  const [curImg, setCurImg] = useState("");
   const params = useParams();
   const dispatch = useDispatch();
-
+  console.log(curImg);
   const data = useSelector((data) => data.detailsPage.details);
   let isLoading = useSelector((data) => data.detailsPage.isLoading);
-
+  function ResetPgination() {
+    setCurImg("");
+  }
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     dispatch(getDataByID(params));
@@ -42,7 +44,6 @@ function DetailsPage() {
   }
 
   return (
-    // <div>aksdjfk</div>
     <div>
       {isLoading ? (
         <Loader />
@@ -57,6 +58,7 @@ function DetailsPage() {
                     src={img}
                     alt="first"
                     className="h-40 mt-3 md:mt-0 md:mb-3"
+                    onClick={() => setCurImg(img)}
                   />
                 ))}
               </div>
@@ -71,13 +73,13 @@ function DetailsPage() {
                     {data.urls?.map((img, i) => (
                       <SwiperSlide>
                         <div className="shrink-0 grow-1 basis-full md:basis-9/12 hover:cursor-grab">
-                          <img src={img} alt="" className="w-full" />
+                          <img src={curImg || img} alt="" className="w-full" />
                         </div>
                       </SwiperSlide>
                     ))}
                     <div className="absolute opacity-0 group-hover:opacity-100 top-1/2 left-1/2 px-2 -translate-y-1/2 flex items-center justify-between w-full z-10 transition-all -translate-x-1/2">
-                      <PrevButton />
-                      <NextButton />
+                      <PrevButton ResetPgination={ResetPgination} />
+                      <NextButton ResetPgination={ResetPgination} />
                     </div>
                   </Swiper>
                 ) : (

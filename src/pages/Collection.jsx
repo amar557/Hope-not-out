@@ -1,19 +1,24 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { fetchBestSelling } from "../redux/AsyncFIrebase";
 import BestSellingCard from "../components/BestSellingCard";
-
+import { AllPages } from "../data/Size";
 function Collection() {
   const params = useParams();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const select = useSelector((me) => me.anchor.bestSellingProducts);
   const isLoading = useSelector((me) => me.anchor.loading);
+  const a = AllPages.find((e) => e === params.collectionname);
 
   useEffect(() => {
+    if (!a) {
+      navigate("/error");
+    }
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     dispatch(fetchBestSelling(params.collectionname));
-  }, [params.collectionname]);
+  }, [params.collectionname, a]);
 
   return (
     <>
@@ -29,16 +34,20 @@ function Collection() {
               <div className="text-center">sorry no items</div>
             ) : (
               select.map((data, i) => (
-                <BestSellingCard
-                  to={params.collectionname}
-                  key={data.id}
-                  data={data.data().urls}
-                  rate={data.data().rate}
-                  discountRate={data.data().discountRate}
-                  isDiscount={data.data().discountRate}
-                  text={data.data().text}
-                  id={data.id}
-                />
+                <div
+                  className=" md:basis-1/4 lg:basis-1/6 sm:basis-[48%] basis-1/2 "
+                  key={i}
+                >
+                  <BestSellingCard
+                    to={params.collectionname}
+                    data={data.data().urls}
+                    rate={data.data().rate}
+                    discountRate={data.data().discountRate}
+                    isDiscount={data.data().discountRate}
+                    text={data.data().text}
+                    id={data.id}
+                  />
+                </div>
               ))
             )}
           </div>
