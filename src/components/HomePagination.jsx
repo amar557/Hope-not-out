@@ -70,7 +70,7 @@ function HomePagination() {
               <img
                 src={data.resImg}
                 alt="Description of the small "
-                className="h-[100vh] sm:h-[80vw] md:h-[50vw] w-full"
+                className="h-[100vw] sm:h-[100vw] md:h-[50vw] w-full"
               />
             </picture>
           </SwiperSlide>

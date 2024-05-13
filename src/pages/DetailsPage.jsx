@@ -8,7 +8,7 @@ import { sizeData } from "../data/Size";
 import { FaMinus } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import BestSellingCard from "../components/BestSellingCard";
-import { Navigation, Pagination } from "swiper/modules";
+import { EffectFade, Navigation, Pagination } from "swiper/modules";
 import { Heading } from "../components/CategoryMenAndWomen";
 import ViewCartPopUp from "../components/ViewCartPopUp";
 import { addToCart, SubTotal } from "../redux/CartSlice";
@@ -16,6 +16,8 @@ import BaadMainPop from "../components/BaadMainPop";
 import Loader from "../components/Loader";
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
 import { getStorage } from "firebase/storage";
 import PrevButton from "../components/PrevButton";
 import NextButton from "../components/NextButton";
@@ -66,8 +68,9 @@ function DetailsPage() {
                 {data.urls && data.urls.length > 1 ? (
                   <Swiper
                     navigation={true}
-                    modules={[Navigation]}
+                    modules={[EffectFade, Navigation, Pagination]}
                     loop={true}
+                    effect={"fade"}
                     className="mySwiper"
                   >
                     {data.urls?.map((img, i) => (

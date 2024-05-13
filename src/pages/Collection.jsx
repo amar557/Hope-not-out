@@ -22,7 +22,7 @@ function Collection() {
 
   return (
     <>
-      <p className="bg-[#ece9e9] text-black w-full py-[50px]  text-xl uppercase leading-5 tracking-tight font-poppins font-medium   text-center">
+      <p className="bg-[#ece9e9] text-black w-full py-[50px] text-xl uppercase leading-5 tracking-tight font-poppins font-medium text-center">
         {params.collectionname}
       </p>
       {isLoading ? (
