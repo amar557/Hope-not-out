@@ -28,7 +28,6 @@ function DetailsPage() {
   const [curImg, setCurImg] = useState("");
   const params = useParams();
   const dispatch = useDispatch();
-  console.log(curImg);
   const data = useSelector((data) => data.detailsPage.details);
   let isLoading = useSelector((data) => data.detailsPage.isLoading);
   function ResetPgination() {
@@ -74,7 +73,7 @@ function DetailsPage() {
                     className="mySwiper"
                   >
                     {data.urls?.map((img, i) => (
-                      <SwiperSlide>
+                      <SwiperSlide key={i}>
                         <div className="shrink-0 grow-1 basis-full md:basis-9/12 hover:cursor-grab">
                           <img src={curImg || img} alt="" className="w-full" />
                         </div>

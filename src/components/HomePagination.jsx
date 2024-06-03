@@ -43,11 +43,11 @@ function HomePagination() {
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
-        // loop={true}
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        // }}
+        loop={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
         pagination={{
           clickable: true,
         }}

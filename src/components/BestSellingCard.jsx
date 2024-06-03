@@ -40,7 +40,7 @@ function BestSellingCard({
             <span className="absolute translate-y-0 bg-white top-0 left-0  w-full h-full flex items-center justify-center text transition-all duration- ">
               select options
             </span>
-            <span className=" absolute translate-y-12 transition-all duration- text-xl bg-black w-full h-full top-0 left-0  flex items-center justify-center dots text-white ">
+            <span className=" absolute translate-y-12 transition-all  text-xl bg-black w-full h-full top-0 left-0  flex items-center justify-center dots text-white ">
               <BsThreeDots />
             </span>
           </button>
@@ -49,18 +49,18 @@ function BestSellingCard({
       <p className="font-medium mt-3 text-sm">{text}</p>
       <div className="space-x-2">
         <span className={`${isDiscount ? "line-through" : ""} text-sm`}>
-          Rs.{rate}.00
+          Rs.{rate.toLocaleString("en-US")}.00
         </span>
 
         {isDiscount && (
           <span className="text-red-500 font-medium capitalize text-sm">
-            Rs.{discountRate}.00
+            Rs.{discountRate.toLocaleString("en-US")}.00
           </span>
         )}
       </div>
       {isDiscount && (
         <span className="absolute top-2 right-2 bg-red-600 text-[10px] py-1 px-2 text-white">
-          -{((rate - discountRate) / rate) * 100}%
+          -{Math.trunc(((rate - discountRate) / rate) * 100)}%
         </span>
       )}
     </div>

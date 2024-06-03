@@ -13,6 +13,7 @@ function SearchBar({ searchbar, setSearchBar }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const sele = useSelector((e) => e.SearchResults.data);
+  const loading = useSelector((e) => e.SearchResults.isLoading);
   const searched = s.filter((e) =>
     search === ""
       ? s
@@ -101,7 +102,9 @@ function SearchBar({ searchbar, setSearchBar }) {
               />
             ))}
           </div>
-          {searched.length > 0 ? (
+          {loading ? (
+            <p className="text-sm">loading...</p>
+          ) : searched.length > 0 ? (
             <button
               className="text-sm ms-4 flex items-center gap-1 justify-start hover:gap-2 transition-all "
               onClick={() => {
