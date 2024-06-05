@@ -4,10 +4,10 @@ import { useLocation, useNavigate } from "react-router";
 function Error() {
   const err = useLocation();
   const navigate = useNavigate();
-  console.log(err);
+
   useEffect(() => {
     setTimeout(() => {
-      navigate("/");
+      navigate("/collection/men");
     }, 3000);
   }, [navigate]);
   return (

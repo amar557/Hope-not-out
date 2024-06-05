@@ -20,14 +20,14 @@ function BestSellingCard({
           alt=""
           className={` ${
             data && data[1] && "group-hover:opacity-0"
-          } transition-all duration-500 `}
+          } transition-all h-full w-full duration-500 object-cover `}
         />
         <img
           src={data && data[1]}
           alt=""
           className={` ${
             data && data[1] && "group-hover:scale-110 group-hover:opacity-100"
-          }  transition-all duration-1000  absolute top-0 right-0 opacity-0 `}
+          }  transition-all duration-1000 h-full w-full absolute object-cover top-0 right-0 opacity-0 `}
         />
         <button className="bg-white text-black absolute bottom-6 right-2 p-1 rounded-full text-lg lg:hidden block ">
           <BsThreeDots />

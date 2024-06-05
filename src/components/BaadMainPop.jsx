@@ -33,7 +33,6 @@ function BaadMainPop({ handleClick }) {
         </div>
         <div className="text-center bg-white pt-28">
           <h1 className="text-2xl font-semibold">Add items to your cart?</h1>
-
           <div className="flex border-b items-center justify-between px-12 pb-12 mt-10">
             {baadMainData.map((data) => (
               <div className="flex items-center justify-center flex-col">
