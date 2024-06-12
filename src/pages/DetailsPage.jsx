@@ -18,7 +18,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import "swiper/css/navigation";
-import { getStorage } from "firebase/storage";
 import PrevButton from "../components/PrevButton";
 import NextButton from "../components/NextButton";
 
@@ -37,8 +36,6 @@ function DetailsPage() {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     dispatch(getDataByID(params));
   }, [params, dispatch]);
-
-  const storage = getStorage();
 
   function handleCartPopUp() {
     setViewCart((view) => !view);
@@ -206,6 +203,7 @@ function SizeContainer({ setCurrentSize, currentSize }) {
       <ul className="flex gap-2 flex-wrap">
         {sizeData.map((data, i) => (
           <li
+            key={i}
             className={`bg-[#f5f5f5] hover:bg-black hover:text-white hover:cursor-pointer transition-all duration-300 py-3 grid place-content-center px-1 basis-1/4   md:basis-[10.33%] md:py-2 grow-0 text-xs font-semibold ${
               data === currentSize && "bg-black text-white"
             } `}
@@ -289,16 +287,18 @@ function PictureDiscription() {
       <p className="font-bold text-base capitalize mt-4">
         fabric: <span className="capitalize font-normal text-base">jersey</span>
       </p>
-      <p className="mt-6">
+      <div className="mt-6">
         <h1 className="capitalize font-bold text-base mb-5">
           care instructions:
         </h1>
         <ul>
-          {Array.from({ length: 5 }).map((data) => (
-            <li className="list-disc ms-5">Lorem ipsum dolor sit amet.</li>
+          {Array.from({ length: 5 }).map((data, i) => (
+            <li className="list-disc ms-5" key={i}>
+              Lorem ipsum dolor sit amet.
+            </li>
           ))}
         </ul>
-      </p>
+      </div>
       <button className="text-[#ff0000] font-bold capitalize mt-8">
         delivery and replacement policy
       </button>

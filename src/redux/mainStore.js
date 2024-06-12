@@ -11,5 +11,7 @@ const store = configureStore({
     cartData,
     SearchResults,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
 });
 export default store;

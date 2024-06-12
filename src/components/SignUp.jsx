@@ -41,7 +41,7 @@ function SignUp({ current, handleAuthenticationPages, handleLoginpage }) {
           <input
             type="text"
             name="firstname"
-            id=""
+            id="firstname"
             onChange={handleChanges}
             className="border outline-none block w-full p-2 text-sm  focus:border-black "
           />
@@ -53,7 +53,7 @@ function SignUp({ current, handleAuthenticationPages, handleLoginpage }) {
           <input
             type="text"
             name="lastname"
-            id=""
+            id="lastname"
             className="border outline-none block w-full p-2 text-sm  focus:border-black "
             onChange={handleChanges}
           />
@@ -68,7 +68,7 @@ function SignUp({ current, handleAuthenticationPages, handleLoginpage }) {
           <input
             type="email"
             name="email"
-            id=""
+            id="email"
             className="border outline-none block w-full p-2 text-sm  focus:border-black "
             onChange={handleChanges}
           />
@@ -82,8 +82,9 @@ function SignUp({ current, handleAuthenticationPages, handleLoginpage }) {
           </label>
           <input
             type="password"
+            autoComplete="false"
             name="password"
-            id=""
+            id="pass"
             className="border outline-none block w-full p-2 text-sm focus:border-black"
             onChange={handleChanges}
           />

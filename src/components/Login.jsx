@@ -52,7 +52,7 @@ function Login({ handleLoginpage, current, handleAuthenticationPages }) {
           <input
             type="email"
             name="email"
-            id=""
+            id="email1"
             onChange={onValueChanges}
             className="border outline-none block w-full p-2 text-sm  focus:border-black "
           />
@@ -65,9 +65,10 @@ function Login({ handleLoginpage, current, handleAuthenticationPages }) {
             </span>
           </label>
           <input
+            autoComplete="false"
             type="password"
             name="password"
-            id=""
+            id="password1"
             className="border outline-none block w-full p-2 text-sm focus:border-black"
             onChange={onValueChanges}
           />

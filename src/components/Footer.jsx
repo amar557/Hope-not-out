@@ -24,7 +24,6 @@ function Footer() {
     setOpenFooters((prevState) => {
       const newState = [...prevState];
       newState[index] = !newState[index];
-      // console.log(openFooters);
       return newState;
     });
   }
@@ -80,9 +79,9 @@ function FooterBlock({
           disabled={disableButton}
         >
           <div className="font-semibold capitalize text-xl">{heading}</div>
-          <button className="md:hidden block">
+          <div className="md:hidden block">
             <GoPlus />
-          </button>
+          </div>
         </button>
       )}
 

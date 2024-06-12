@@ -40,7 +40,7 @@ function ForgetPass({ current, handleLoginpage, handleAuthenticationPages }) {
           <input
             type="email"
             name="email"
-            id=""
+            id="email3"
             className="border outline-none block w-full p-2 text-sm  focus:border-black "
             onChange={handleChanges}
           />

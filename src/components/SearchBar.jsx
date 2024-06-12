@@ -59,7 +59,7 @@ function SearchBar({ searchbar, setSearchBar }) {
         <div className="w-full">
           <select
             name=""
-            id=""
+            id="category"
             onChange={(e) => setcategory(e.target.value)}
             className="text-base py-2 my-2 items-center mt-4 justify-center flex capitalize border px-4 rounded-3xl w-11/12 outline-none mx-auto"
           >
@@ -80,7 +80,7 @@ function SearchBar({ searchbar, setSearchBar }) {
               className="border-0 outline-none  text-base flex-1"
               name=""
               onChange={(e) => setSearch(e.target.value)}
-              id=""
+              id="item"
             />
             <button className="text-base text-slate-700">
               <CiSearch />
